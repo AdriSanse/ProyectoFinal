@@ -1,0 +1,60 @@
+<resources>
+    <string name="app_name">ProyectoFinal</string>
+
+
+    <string name="nombre">Nombre</string>
+    <string name="registrarse">Registrarse</string>
+    <string name="correo">Correo</string>
+    <string name="contrasena">Contraseña</string>
+    <string name="repetir_contrasena">Repetir Contraseña</string>
+    <string name="telefono">Telefono</string>
+    <string name="inicio_sesion">Iniciar Sesion</string>
+    <string name="crear_sala">Crear Sala</string>
+    <string name="ver_perfil">Ver Perfil</string>
+    <string name="ajustes">Ajustes</string>
+    <string name="invitar_gente">Invitar Gente</string>
+    <string name="actividad_sala">Actividad Sala</string>
+    <string name="gasto_dinero">Gasto Dinero</string>
+    <string name="agregar_dinero">Agregar Dinero</string>
+    <string name="asunto">Asunto</string>
+    <string name="fecha">Fecha</string>
+    <string name="dinero">Dinero</string>
+    <string name="calendario">Calendario</string>
+    <string name="actualizar">Actualizar</string>
+    <string name="guardar_cambios">Guardar Cambios</string>
+    <string name="nombre_sala">Nombre Sala</string>
+    <string name="nombre_usuario">Nombre Usuario</string>
+    <string name="correo_amigo">Correo Amigo</string>
+    <string name="despliegue">Desplegar para Invitar</string>
+    <string name="invitar">Invitar</string>
+    <string name="cerrar_sesion">Cerrar Sesion</string>
+    <string name="nosotros">Sobre Nosotros</string>
+    <string name="actu">Actualizar Dinero</string>
+    <string name="actividad">Ver Actividad Sala</string>
+    <string name="title_activity_pagina_principal_">PaginaPrincipal_Activity</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_gallery">Gallery</string>
+    <string name="menu_slideshow">Slideshow</string>
+    <string name="title_activity_crear_sala_">CrearSala_Activity</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="title_activity_sala_personal_">SalaPersonal_Activity</string>
+    <string name="title_activity_eleccion_sala_">EleccionSala_Activity</string>
+    <string name="title_activity_invitar_gente_">InvitarGente_Activity</string>
+    <string name="title_activity_sucesos_">Sucesos_Activity</string>
+
+
+</resources>
