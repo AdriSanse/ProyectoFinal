@@ -37,7 +37,7 @@ public class CrearSala_Activity extends AppCompatActivity implements View.OnClic
     UsuariosProvider usersProvider;
     Autentificacion mAuth;
     FirebaseFirestore db;
-    String id = "";
+    String idUsuario = "";
     String nombre = "";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,7 +64,7 @@ public class CrearSala_Activity extends AppCompatActivity implements View.OnClic
         Task<DocumentSnapshot> task = usersProvider.getUsuario(mAuth.getIdUser()).addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
-                id = documentSnapshot.get("id").toString();
+                idUsuario = documentSnapshot.get("id").toString();
                 nombre = documentSnapshot.get("nombre").toString();
             }
         }).addOnFailureListener(new OnFailureListener() {
@@ -83,7 +83,7 @@ public class CrearSala_Activity extends AppCompatActivity implements View.OnClic
                 miSala.setNombreCreador(nombre);
                 miSala.setNombreSala(nombreSala.getText().toString());
                 ArrayList<String> miGrupo = new ArrayList<>();
-                miGrupo.add(id);
+                miGrupo.add(idUsuario);
                 miSala.setGrupo(miGrupo);
                 salaProviders.createSala(miSala).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
@@ -99,6 +99,7 @@ public class CrearSala_Activity extends AppCompatActivity implements View.OnClic
                                             String id = document.getId();
                                             Intent miIntento = new Intent(CrearSala_Activity.this,SalaPersonal_Activity.class);
                                             miIntento.putExtra("id",id);
+                                            miIntento.putExtra("idUsuario",idUsuario);
                                             startActivity(miIntento);
                                         }
                                     }

@@ -8,7 +8,7 @@
     tools:context=".ui.EditarPerfil.GalleryFragment" >
 
     <EditText
-        android:id="@+id/editText"
+        android:id="@+id/textUserPerfil"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
@@ -28,28 +28,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.163" />
 
-    <EditText
-        android:id="@+id/contrasenaEditar"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="32dp"
-        android:backgroundTint="@color/teal_200"
-        android:drawableStart="@drawable/lock"
-        android:ems="10"
-        android:hint="@string/contrasena"
-        android:inputType="textPassword"
-        android:singleLine="true"
-        android:textColor="#FBFBFB"
-        android:textColorHint="#FFFFFF"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/telefonoEditar"
-        app:layout_constraintVertical_bias="0.063" />
-
     <Button
         android:id="@+id/btnGuardarCambiosPerfil"
         android:layout_width="0dp"
@@ -64,15 +42,14 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/emailEditarPerfil"
-        app:layout_constraintVertical_bias="0.344" />
+        app:layout_constraintTop_toBottomOf="@+id/textCorreoPerfil"
+        app:layout_constraintVertical_bias="0.673" />
 
     <EditText
-        android:id="@+id/emailEditarPerfil"
+        android:id="@+id/textCorreoPerfil"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="16dp"
         android:layout_marginEnd="32dp"
         android:backgroundTint="@color/teal_200"
         android:drawableStart="@drawable/envelop"
@@ -86,11 +63,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/contrasenaRepetidaEditar"
-        app:layout_constraintVertical_bias="0.077" />
+        app:layout_constraintTop_toBottomOf="@+id/textTelefonoPerfil"
+        app:layout_constraintVertical_bias="0.082" />
 
     <EditText
-        android:id="@+id/telefonoEditar"
+        android:id="@+id/textTelefonoPerfil"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
@@ -108,28 +85,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText"
+        app:layout_constraintTop_toBottomOf="@+id/textUserPerfil"
         app:layout_constraintVertical_bias="0.044" />
 
-    <EditText
-        android:id="@+id/contrasenaRepetidaEditar"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="32dp"
-        android:backgroundTint="@color/teal_200"
-        android:drawableStart="@drawable/lock"
-        android:ems="10"
-        android:hint="@string/repetir_contrasena"
-        android:inputType="textPassword"
-        android:singleLine="true"
-        android:textColor="#FBFBFB"
-        android:textColorHint="#FFFFFF"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/contrasenaEditar"
-        app:layout_constraintVertical_bias="0.083" />
 </androidx.constraintlayout.widget.ConstraintLayout>

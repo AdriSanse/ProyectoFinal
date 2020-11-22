@@ -86,14 +86,14 @@ public class SalaPersonal_Activity extends AppCompatActivity implements View.OnC
                 }
             }
         });
-        Toast.makeText(this, "Eres " + idUsuario, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Eres " + idUsuario + " con " + textoDinero.getText().toString(), Toast.LENGTH_SHORT).show();
     }
 
     public void sacarUsuario(){
         Task<DocumentSnapshot> task = userProviders.getUsuario(auth.getIdUser()).addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
-                Toast.makeText(SalaPersonal_Activity.this, ""+documentSnapshot.get("nombre").toString(), Toast.LENGTH_SHORT).show();
+                //Toast.makeText(SalaPersonal_Activity.this, ""+documentSnapshot.get("nombre").toString(), Toast.LENGTH_SHORT).show();
                 usuario = documentSnapshot.get("nombre").toString();
             }
         }).addOnFailureListener(new OnFailureListener() {
@@ -103,6 +103,14 @@ public class SalaPersonal_Activity extends AppCompatActivity implements View.OnC
 
             }
         });
+    }
+
+    @Override
+    protected void onStop() {
+        if(miEscuchador!=null){
+            miEscuchador.remove();
+        }
+        super.onStop();
     }
 
     @Override
