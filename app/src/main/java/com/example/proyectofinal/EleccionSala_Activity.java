@@ -16,6 +16,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -39,6 +40,10 @@ public class EleccionSala_Activity extends AppCompatActivity implements View.OnC
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        getSupportActionBar().setTitle("mi titulo");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+
         db = FirebaseFirestore.getInstance();
 
         btnSalaPersonal = findViewById(R.id.btnActualizarDinero);
@@ -52,6 +57,13 @@ public class EleccionSala_Activity extends AppCompatActivity implements View.OnC
 
         cargarDatos();
     }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Toast.makeText(this, "Btn home dado", Toast.LENGTH_SHORT).show();
+    }
+
     public void cargarDatos(){
         salaAdapter = new ArrayAdapter<>(EleccionSala_Activity.this,R.layout.spinner_item_eleccion,new ArrayList<Sala>());
         salasCombo.setAdapter(salaAdapter);

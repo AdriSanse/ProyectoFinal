@@ -18,6 +18,6 @@ public class InvitarGente_Activity extends AppCompatActivity {
         setContentView(R.layout.activity_invitar_gente_);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        
+
     }
 }
