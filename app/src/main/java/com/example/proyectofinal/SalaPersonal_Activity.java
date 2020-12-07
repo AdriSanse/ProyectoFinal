@@ -2,7 +2,13 @@ package com.example.proyectofinal;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextUtils;
+import android.text.TextWatcher;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -13,6 +19,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import com.example.proyectofinal.Objects.Sucesos;
 import com.example.proyectofinal.providers.Autentificacion;
@@ -22,6 +29,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -33,13 +41,15 @@ import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.Calendar;
+import java.util.Locale;
 
 public class SalaPersonal_Activity extends AppCompatActivity implements View.OnClickListener{
 
-    Button btnCalendario, btnGenerarSuceso;
+    Button btnCalendario, btnGenerarSuceso, btnInvitarGente;
     TextView textoCalendario, textoDinero, textoDineroCambio, textAsunto;
     String id = "", idUsuario = "", usuario = "", fecha = "";
     RadioButton radioGasto, radioIngreso;
+    TextInputLayout dineroLayout, asuntoLayout, calendarioLayout;
     Calendar mCalendar;
     Autentificacion auth;
     SalaProviders salaProviders;
@@ -51,6 +61,12 @@ public class SalaPersonal_Activity extends AppCompatActivity implements View.OnC
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sala_personal_);
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        guardarLocale();
+
+        getSupportActionBar().setTitle(getString(R.string.title_activity_sala_personal_));
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         auth = new Autentificacion();
         salaProviders = new SalaProviders();
@@ -63,6 +79,13 @@ public class SalaPersonal_Activity extends AppCompatActivity implements View.OnC
         textAsunto = findViewById(R.id.textAsunto);
         radioIngreso = findViewById(R.id.radioIngreso);
         radioGasto = findViewById(R.id.radioGastos);
+
+        dineroLayout = findViewById(R.id.dineroSalaPersonalLayout);
+        asuntoLayout = findViewById(R.id.AsuntoLayout);
+        calendarioLayout = findViewById(R.id.fechaSalaPersonalLayout);
+
+        btnInvitarGente = findViewById(R.id.btnInvitarGente);
+        btnInvitarGente.setOnClickListener(this);
         btnGenerarSuceso = findViewById(R.id.btnCrearSuceso);
         btnGenerarSuceso.setOnClickListener(this);
         btnCalendario = findViewById(R.id.btnCalendario);
@@ -71,10 +94,100 @@ public class SalaPersonal_Activity extends AppCompatActivity implements View.OnC
 
         Intent miDinero = getIntent();
         id = (String) miDinero.getSerializableExtra("id");
-        idUsuario = (String) miDinero.getSerializableExtra("idUsuario");
+        idUsuario = auth.getIdUser();
         cargarDatos();
         sacarUsuario();
+        textAsunto.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                if(TextUtils.isEmpty(textAsunto.getText().toString())){
+                    asuntoLayout.setError(getString(R.string.asuntoFallo));
+                }else {
+                    asuntoLayout.setError(null);
+                }
+            }
+        });
+        textoDineroCambio.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                if(TextUtils.isEmpty(textoDineroCambio.getText().toString())){
+                    dineroLayout.setError(getString(R.string.dineroFallo));
+                }else {
+                    dineroLayout.setError(null);
+                }
+            }
+        });
+        textoCalendario.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                if(TextUtils.isEmpty(textoCalendario.getText().toString())){
+                    calendarioLayout.setError(getString(R.string.fechaFallo));
+                }else {
+                    calendarioLayout.setError(null);
+                }
+            }
+        });
+
     }
+    private void setLocale(String lang) {
+        Locale locale = new Locale(lang);
+        Locale.setDefault(locale);
+        Configuration config = new Configuration();
+        getBaseContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
+        //guardar datos de preferencia
+        SharedPreferences.Editor editor = getSharedPreferences("Ajustes",MODE_PRIVATE).edit();
+        editor.putString("Mi idioma", lang);
+        editor.apply();
+    }
+    public void guardarLocale (){
+        SharedPreferences preferences = getSharedPreferences("Ajustes", MODE_PRIVATE);
+        String idioma = preferences.getString("Mi idioma", "");
+        setLocale(idioma);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if(item.getItemId()==android.R.id.home){
+            finish();
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+    }
+
     public void cargarDatos() {
         CollectionReference busquedaDinero = db.collection("Salas");
         Query query = busquedaDinero.whereEqualTo("id", id);
@@ -90,17 +203,13 @@ public class SalaPersonal_Activity extends AppCompatActivity implements View.OnC
     }
 
     public void sacarUsuario(){
-        Task<DocumentSnapshot> task = userProviders.getUsuario(auth.getIdUser()).addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+        DocumentReference dcoNombre = db.collection("User").document(idUsuario);
+        dcoNombre.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
-            public void onSuccess(DocumentSnapshot documentSnapshot) {
-                //Toast.makeText(SalaPersonal_Activity.this, ""+documentSnapshot.get("nombre").toString(), Toast.LENGTH_SHORT).show();
-                usuario = documentSnapshot.get("nombre").toString();
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                Toast.makeText(SalaPersonal_Activity.this, "Algo ha fallodo", Toast.LENGTH_SHORT).show();
-
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if(task.isSuccessful()){
+                  usuario = (String) task.getResult().get("nombre");
+                }
             }
         });
     }
@@ -115,6 +224,12 @@ public class SalaPersonal_Activity extends AppCompatActivity implements View.OnC
 
     @Override
     public void onClick(View view) {
+//        if(view.getId()==R.id.toolbar){
+//            Intent miIntentoToolbar = new Intent(this, EleccionSala_Activity.class);
+//            miIntentoToolbar.putExtra("id", id);
+//            miIntentoToolbar.putExtra("idUsuario", idUsuario);
+//            startActivity(miIntentoToolbar);
+//        }
         if(view.getId()==R.id.btnCalendario){
             DatePickerDialog datePickerDialog = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
                 @Override
@@ -131,7 +246,22 @@ public class SalaPersonal_Activity extends AppCompatActivity implements View.OnC
 
         if(view.getId() == R.id.btnCrearSuceso){
             final String sAsunto = textAsunto.getText().toString();
+
+            if(TextUtils.isEmpty(sAsunto) || TextUtils.isEmpty(fecha) || TextUtils.isEmpty(textoDineroCambio.getText().toString())){
+                if(TextUtils.isEmpty(sAsunto)){
+                    asuntoLayout.setError(getString(R.string.asuntoFallo));
+                }
+                if(TextUtils.isEmpty(textoDineroCambio.getText().toString())){
+                    dineroLayout.setError(getString(R.string.dineroFallo));
+                }
+                if(TextUtils.isEmpty(fecha)){
+                    calendarioLayout.setError(getString(R.string.fechaFallo));
+                }
+                return;
+            }
+
             final int dineroInt = Integer.parseInt(textoDineroCambio.getText().toString());
+
             if(radioGasto.isChecked()){
                 CollectionReference busquedaId = db.collection("Salas");
                 Query query = busquedaId.whereEqualTo("id",id);
@@ -223,7 +353,11 @@ public class SalaPersonal_Activity extends AppCompatActivity implements View.OnC
             textAsunto.setText("");
             textoCalendario.setText("");
             textoDineroCambio.setText("");
-
+        }
+        if(view.getId()==R.id.btnInvitarGente){
+            Intent miIntentoInvitar = new Intent(this, InvitarGente_Activity.class);
+            miIntentoInvitar.putExtra("id",id);
+            startActivity(miIntentoInvitar);
         }
     }
 }

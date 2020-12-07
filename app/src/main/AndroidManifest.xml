@@ -20,7 +20,7 @@
         <activity
             android:name=".EleccionSala_Activity"
             android:label="@string/title_activity_eleccion_sala_"
-            android:theme="@style/Theme.ProyectoFinal.NoActionBar" />
+            android:theme="@style/Theme.ProyectoFinal.NoActionBar"  android:parentActivityName=".PaginaPrincipal_Activity" />
         <activity
             android:name=".SalaPersonal_Activity"
             android:label="@string/title_activity_sala_personal_"
