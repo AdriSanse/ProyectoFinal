@@ -4,7 +4,9 @@ import android.annotation.SuppressLint;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -28,7 +30,9 @@ import com.google.firebase.firestore.ListenerRegistration;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.navigation.NavArgument;
 import androidx.navigation.NavController;
+import androidx.navigation.NavDestination;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
@@ -69,6 +73,23 @@ public class PaginaPrincipal_Activity extends AppCompatActivity{
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
+                if(item.getItemId()==R.id.ajustesFragment){
+                    Log.e("own", "onDestinationChanged: entro " );
+                    Bundle bundle=new Bundle();
+                    bundle.putString("key","value");
+
+                    return true;
+                }
+
+                return false;
+            }
+        });
+
+
         header = navigationView.getHeaderView(0);
         nombreUsuario = header.findViewById(R.id.nombreUsuarioDrawer);
         correoUsuario = header.findViewById(R.id.correoUsuarioDrawer);
@@ -78,6 +99,7 @@ public class PaginaPrincipal_Activity extends AppCompatActivity{
         db = FirebaseFirestore.getInstance();
 
     }
+
     private void setLocale(String lang) {
         Locale locale = new Locale(lang);
         Locale.setDefault(locale);

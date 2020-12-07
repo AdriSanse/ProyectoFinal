@@ -14,6 +14,7 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -40,7 +41,6 @@ public class MainActivity extends AppCompatActivity implements OnClickListener{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         //Carga el idioma seleccionado
-        System.out.println();
         guardarLocale();
 
         mauth = new Autentificacion();
@@ -106,6 +106,9 @@ public class MainActivity extends AppCompatActivity implements OnClickListener{
                 }
             }
         });
+
+
+
     }
 
     public void verIdiomas(){
@@ -141,7 +144,18 @@ public class MainActivity extends AppCompatActivity implements OnClickListener{
         }).show();
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+
+    }
+
+
+
     private void setLocale(String lang) {
+        Log.e("own", "onCreate: "+lang );
+
         Locale locale = new Locale(lang);
         Locale.setDefault(locale);
         Configuration config = new Configuration();
@@ -150,10 +164,11 @@ public class MainActivity extends AppCompatActivity implements OnClickListener{
         SharedPreferences.Editor editor = getSharedPreferences("Ajustes",MODE_PRIVATE).edit();
         editor.putString("idioma", lang);
         editor.apply();
+
     }
     public void guardarLocale (){
         SharedPreferences preferences = getSharedPreferences("Ajustes", Activity.MODE_PRIVATE);
-        String idioma = preferences.getString("idioma", "");
+        String idioma = preferences.getString("idioma", "en");
         setLocale(idioma);
     }
 
