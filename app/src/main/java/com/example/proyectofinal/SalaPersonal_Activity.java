@@ -40,6 +40,7 @@ import com.google.firebase.firestore.ListenerRegistration;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import java.text.DecimalFormat;
 import java.util.Calendar;
 import java.util.Locale;
 
@@ -195,7 +196,7 @@ public class SalaPersonal_Activity extends AppCompatActivity implements View.OnC
             @Override
             public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
                 if (value != null && !value.isEmpty()) {
-                    textoDinero.setText("" + value.getDocuments().get(0).get("dinero"));
+                    textoDinero.setText(roundToHalf(Double.parseDouble(value.getDocuments().get(0).getString("dinero"))));
                 }
             }
         });
@@ -212,6 +213,12 @@ public class SalaPersonal_Activity extends AppCompatActivity implements View.OnC
                 }
             }
         });
+    }
+
+    public static String roundToHalf(double d) {
+        //double result = Math.round(d * 2) / 2.0;
+        DecimalFormat formato = new DecimalFormat("####0.00");
+        return formato.format(d);
     }
 
     @Override
@@ -260,7 +267,7 @@ public class SalaPersonal_Activity extends AppCompatActivity implements View.OnC
                 return;
             }
 
-            final int dineroInt = Integer.parseInt(textoDineroCambio.getText().toString());
+            final double dineroDouble = Double.parseDouble(textoDineroCambio.getText().toString());
 
             if(radioGasto.isChecked()){
                 CollectionReference busquedaId = db.collection("Salas");
@@ -270,12 +277,12 @@ public class SalaPersonal_Activity extends AppCompatActivity implements View.OnC
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if(task.isSuccessful()){
                             for(DocumentSnapshot document : task.getResult()) {
-                                int dinero = Integer.parseInt("" + document.get("dinero"));
-                                int resultado = dinero - dineroInt;
+                                double dinero = Double.parseDouble("" + document.get("dinero"));
+                                double resultado = dinero - dineroDouble;
                                 final String sResultado = resultado + "";
 
                                 Sucesos miSuceso = new Sucesos();
-                                miSuceso.setDinero(""+dineroInt);
+                                miSuceso.setDinero(""+dineroDouble);
                                 miSuceso.setAsunto(sAsunto);
                                 miSuceso.setFecha(fecha);
                                 miSuceso.setUsuario(usuario);
@@ -287,7 +294,7 @@ public class SalaPersonal_Activity extends AppCompatActivity implements View.OnC
                                         if(task.isSuccessful()){
                                             Toast.makeText(SalaPersonal_Activity.this, "Funciona Crear Sucesos Dentro de la Sala", Toast.LENGTH_SHORT).show();
                                             DocumentReference actuDineroSala = db.collection("Salas").document(id);
-                                            actuDineroSala.update("dinero",sResultado).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                            actuDineroSala.update("dinero",roundToHalf(resultado)).addOnCompleteListener(new OnCompleteListener<Void>() {
                                                 @Override
                                                 public void onComplete(@NonNull Task<Void> task) {
                                                     if(task.isSuccessful()){
@@ -315,12 +322,12 @@ public class SalaPersonal_Activity extends AppCompatActivity implements View.OnC
 
                         if(task.isSuccessful()){
                             for(DocumentSnapshot document : task.getResult()) {
-                                int dinero = Integer.parseInt("" + document.get("dinero"));
-                                int resultado = dinero + dineroInt;
+                                double dinero = Double.parseDouble("" + document.get("dinero"));
+                                double resultado = dinero + dineroDouble;
                                 final String sResultado = resultado + "";
 
                                 Sucesos miSuceso = new Sucesos();
-                                miSuceso.setDinero(""+dineroInt);
+                                miSuceso.setDinero(""+dineroDouble);
                                 miSuceso.setAsunto(sAsunto);
                                 miSuceso.setFecha(fecha);
                                 miSuceso.setUsuario(usuario);

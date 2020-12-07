@@ -12,14 +12,34 @@
         tools:layout="@layout/fragment_home" />
 
     <fragment
-        android:id="@+id/nav_gallery"
+        android:id="@+id/nav_perfil"
         android:name="com.example.proyectofinal.ui.EditarPerfil.GalleryFragment"
         android:label="@string/menu_gallery"
         tools:layout="@layout/fragment_editarPerfil" />
 
     <fragment
-        android:id="@+id/nav_slideshow"
-        android:name="com.example.proyectofinal.ui.slideshow.SlideshowFragment"
-        android:label="@string/menu_slideshow"
-        tools:layout="@layout/fragment_slideshow" />
+        android:id="@+id/ajustesFragment"
+        android:name="com.example.proyectofinal.ui.Ajustes.AjustesFragment"
+        android:label="@string/ajustes"
+        tools:layout="@layout/fragment_ajustes" />
+    <fragment
+        android:id="@+id/ayudaFragment"
+        android:name="com.example.proyectofinal.ui.Ayuda.Ayuda_Fragment"
+        android:label="@string/ayuda"
+        tools:layout="@layout/fragment_ayuda" />
+    <fragment
+        android:id="@+id/idiomasFragment"
+        android:name="com.example.proyectofinal.ui.Idioma.IdiomasFragment"
+        android:label="@string/idiomasTitulo"
+        tools:layout="@layout/fragment_idiomas" />
+    <fragment
+        android:id="@+id/sobreNosotros_Fragment"
+        android:name="com.example.proyectofinal.ui.SobreNosotros.SobreNosotros_Fragment"
+        android:label="@string/sobreNosotrosTitulo"
+        tools:layout="@layout/fragment_sobre_nosotros" />
+    <fragment
+        android:id="@+id/compartirAppFragment"
+        android:name="com.example.proyectofinal.ui.Compartir.CompartirAppFragment"
+        android:label="fragment_compartir_app"
+        tools:layout="@layout/fragment_compartir_app" />
 </navigation>

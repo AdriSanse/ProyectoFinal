@@ -1,5 +1,6 @@
 package com.example.proyectofinal;
 
+import android.annotation.SuppressLint;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
@@ -13,6 +14,7 @@ import android.widget.Toast;
 
 import com.example.proyectofinal.providers.Autentificacion;
 import com.example.proyectofinal.providers.UsuariosProvider;
+import com.example.proyectofinal.ui.Ajustes.AjustesFragment;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -42,10 +44,12 @@ public class PaginaPrincipal_Activity extends AppCompatActivity{
     Autentificacion mauth;
     UsuariosProvider usersProvider;
     FirebaseFirestore db;
+    View header;
     TextView nombreUsuario, correoUsuario;
     DrawerLayout drawer;
     private ListenerRegistration listener;
 
+    @SuppressLint("ResourceType")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,44 +63,20 @@ public class PaginaPrincipal_Activity extends AppCompatActivity{
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_home, R.id.nav_perfil, R.id.ajustesFragment, R.id.ayudaFragment, R.id.idiomasFragment, R.id.sobreNosotros_Fragment)
+                R.id.nav_home, R.id.nav_perfil, R.id.ajustesFragment, R.id.ayudaFragment, R.id.idiomasFragment, R.id.sobreNosotros_Fragment, R.id.compartirAppFragment)
                 .setDrawerLayout(drawer)
                 .build();
-        drawer.addDrawerListener(new DrawerLayout.DrawerListener() {
-            @Override
-            public void onDrawerSlide(@NonNull View drawerView, float slideOffset) {
-
-            }
-
-            @Override
-            public void onDrawerOpened(@NonNull View drawerView) {
-                drawerView.findViewById(R.id.compartir).setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        Toast.makeText(PaginaPrincipal_Activity.this, "HOOOLA", Toast.LENGTH_SHORT).show();
-                    }
-                });
-            }
-
-            @Override
-            public void onDrawerClosed(@NonNull View drawerView) {
-
-            }
-
-            @Override
-            public void onDrawerStateChanged(int newState) {
-
-            }
-        });
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
+        header = navigationView.getHeaderView(0);
+        nombreUsuario = header.findViewById(R.id.nombreUsuarioDrawer);
+        correoUsuario = header.findViewById(R.id.correoUsuarioDrawer);
 
         mauth = new Autentificacion();
         usersProvider = new UsuariosProvider();
         db = FirebaseFirestore.getInstance();
 
-        //cargarDatos();
     }
     private void setLocale(String lang) {
         Locale locale = new Locale(lang);
@@ -105,40 +85,39 @@ public class PaginaPrincipal_Activity extends AppCompatActivity{
         getBaseContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
         //guardar datos de preferencia
         SharedPreferences.Editor editor = getSharedPreferences("Ajustes",MODE_PRIVATE).edit();
-        editor.putString("Mi idioma", lang);
+        editor.putString("idioma", lang);
         editor.apply();
     }
     public void guardarLocale (){
         SharedPreferences preferences = getSharedPreferences("Ajustes", MODE_PRIVATE);
-        String idioma = preferences.getString("Mi idioma", "");
+        String idioma = preferences.getString("idioma", "");
         setLocale(idioma);
     }
 
-//    @Override
-//    protected void onStart() {
-//        if(listener==null){
-//            cargarDatos();
-//        }
-//        super.onStart();
-//    }
-//
-//    @Override
-//    protected void onStop() {
-//        listener.remove();
-//        super.onStop();
-//    }
-//
-//    public void cargarDatos(){
-//        listener =  usersProvider.getUsuario(mauth.getIdUser()).addSnapshotListener(new EventListener<DocumentSnapshot>() {
-//            @Override
-//            public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
-//                nombreUsuario = drawer.findViewById(R.id.nombreUsuarioDrawer);
-//                correoUsuario = drawer.findViewById(R.id.correoUsuarioDrawer);
-//                nombreUsuario.setText(value.get("nombre").toString());
-//                correoUsuario.setText(value.get("email").toString());
-//            }
-//        });
-//    }
+    @Override
+    protected void onStart() {
+        if(listener==null){
+            cargarDatos();
+        }
+        super.onStart();
+    }
+
+    @Override
+    protected void onStop() {
+        listener.remove();
+        System.out.println("OnStop");
+        super.onStop();
+    }
+
+    public void cargarDatos(){
+        listener =  usersProvider.getUsuario(mauth.getIdUser()).addSnapshotListener(new EventListener<DocumentSnapshot>() {
+            @Override
+            public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
+                nombreUsuario.setText(value.get("nombre").toString());
+                correoUsuario.setText(value.get("email").toString());
+            }
+        });
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/black"
@@ -14,7 +15,8 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
-        android:text="Invitar Gente"
+        android:background="@drawable/button_rounded"
+        android:text="@string/invitarGente"
         app:layout_constraintBottom_toTopOf="@+id/dineroTotal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.95"
@@ -29,7 +31,6 @@
         android:layout_marginStart="32dp"
         android:layout_marginEnd="32dp"
         android:backgroundTint="#FAFAFA"
-        android:text="TextView"
         android:textAlignment="center"
         android:textColor="#FFFFFF"
         android:textColorHint="#F6F6F6"
@@ -37,10 +38,10 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.161" />
+        app:layout_constraintVertical_bias="0.125" />
 
     <RadioGroup
         android:id="@+id/radioGroup"
@@ -52,16 +53,15 @@
         android:backgroundTint="#FAFAFA"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/dineroTotal"
-        app:layout_constraintVertical_bias="0.068">
+        app:layout_constraintVertical_bias="0.0">
 
         <RadioButton
             android:id="@+id/radioGastos"
             android:layout_width="match_parent"
             android:layout_height="37dp"
-            android:text="Gastos"
+            android:text="@string/gastos"
             android:textColor="#FFFFFF"
             android:textColorHint="#ECEAEA" />
 
@@ -69,104 +69,126 @@
             android:id="@+id/radioIngreso"
             android:layout_width="match_parent"
             android:layout_height="31dp"
-            android:text="Ingreso"
+            android:text="@string/ingresos"
             android:textColor="#FFFFFF" />
     </RadioGroup>
 
-    <EditText
-        android:id="@+id/textAsunto"
-        android:layout_width="match_parent"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/AsuntoLayout"
+        style="@style/LoginTextInputLayoutStyle"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginTop="32dp"
         android:layout_marginEnd="32dp"
-        android:backgroundTint="@color/teal_200"
-        android:ems="10"
-        android:hint="@string/asunto"
-        android:inputType="textPersonName"
-        android:singleLine="true"
-        android:textColor="#FFFFFF"
         android:textColorHint="#FFFFFF"
+        app:errorEnabled="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/radioGroup"
-        app:layout_constraintVertical_bias="0.044" />
+        app:layout_constraintVertical_bias="0.0"
+        app:startIconDrawable="@drawable/ic_correo_electronico"
+        app:startIconTint="@color/white">
 
-    <EditText
-        android:id="@+id/textDineroSalaPersonal"
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/textAsunto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/asunto"
+            android:singleLine="true"
+            android:textColor="#FFFFFF" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/dineroSalaPersonalLayout"
+        style="@style/LoginTextInputLayoutStyle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="32dp"
-        android:backgroundTint="@color/teal_200"
-        android:ems="10"
-        android:hint="@string/dinero"
-        android:inputType="numberDecimal"
-        android:singleLine="true"
-        android:textColor="#FFFFFF"
         android:textColorHint="#FFFFFF"
+        app:errorEnabled="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textAsunto"
-        app:layout_constraintVertical_bias="0.042" />
+        app:layout_constraintTop_toBottomOf="@+id/AsuntoLayout"
+        app:layout_constraintVertical_bias="0.0"
+        app:startIconDrawable="@drawable/ic_bolsa_de_dinero_con_signo_de_dolar"
+        app:startIconTint="@color/white">
 
-    <EditText
-        android:id="@+id/textFechaSuceso"
-        android:layout_width="wrap_content"
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/textDineroSalaPersonal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/dinero"
+            android:inputType="numberDecimal"
+            android:numeric="decimal"
+            android:singleLine="true"
+            android:textColor="#FFFFFF" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/fechaSalaPersonalLayout"
+        style="@style/LoginTextInputLayoutStyle"
+        android:layout_width="168dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="32dp"
         android:layout_marginTop="16dp"
-        android:backgroundTint="@color/teal_200"
-        android:clickable="true"
-        android:ems="10"
-        android:enabled="false"
-        android:hint="@string/fecha"
-        android:inputType="date"
-        android:singleLine="true"
-        android:textColor="#FFFFFF"
+        android:layout_marginEnd="32dp"
         android:textColorHint="#FFFFFF"
+        app:errorEnabled="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.086"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textDineroSalaPersonal"
-        app:layout_constraintVertical_bias="0.104" />
+        app:layout_constraintTop_toBottomOf="@+id/dineroSalaPersonalLayout"
+        app:layout_constraintVertical_bias="0.0"
+        app:startIconDrawable="@drawable/ic_calendario"
+        app:startIconTint="@color/white">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/textFechaSuceso"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:editable="false"
+            android:hint="@string/fecha"
+            android:singleLine="true"
+            android:textColor="#FFFFFF" />
+    </com.google.android.material.textfield.TextInputLayout>
 
     <Button
         android:id="@+id/btnCrearSuceso"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="48dp"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="32dp"
-        android:layout_marginBottom="32dp"
         android:background="@drawable/button_rounded"
-        android:text="Crear Suceso"
+        android:text="@string/crearSuceso"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textFechaSuceso"
-        app:layout_constraintVertical_bias="0.561" />
+        app:layout_constraintTop_toBottomOf="@+id/btnCalendario"
+        app:layout_constraintVertical_bias="0.226" />
 
     <Button
         android:id="@+id/btnCalendario"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="24dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="32dp"
         android:background="@drawable/button_rounded_border"
-        android:text="Calendario"
-        app:layout_constraintBottom_toTopOf="@+id/btnCrearSuceso"
+        android:text="@string/calendario"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/textFechaSuceso"
-        app:layout_constraintTop_toBottomOf="@+id/textDineroSalaPersonal"
-        app:layout_constraintVertical_bias="0.287" />
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/fechaSalaPersonalLayout"
+        app:layout_constraintTop_toBottomOf="@+id/dineroSalaPersonalLayout"
+        app:layout_constraintVertical_bias="0.0" />
 </androidx.constraintlayout.widget.ConstraintLayout>

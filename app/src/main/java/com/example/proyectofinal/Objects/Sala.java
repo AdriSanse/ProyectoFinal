@@ -1,6 +1,7 @@
 package com.example.proyectofinal.Objects;
 
 import java.util.List;
+import java.util.Objects;
 
 public class Sala {
     String id, nombreCreador, nombreSala, contrasena;
@@ -65,5 +66,18 @@ public class Sala {
     @Override
     public String toString() {
         return nombreSala;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Sala sala = (Sala) o;
+        return id.equals(sala.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 }

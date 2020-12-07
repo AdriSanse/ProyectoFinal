@@ -28,4 +28,8 @@ public class Autentificacion {
         auth.signOut();
     }
 
+    public Task<Void> changePassword(String email){
+        return auth.sendPasswordResetEmail(email);
+    }
+
 }

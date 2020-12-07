@@ -9,10 +9,28 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.ProyectoFinal">
+        <activity android:name=".ui.Ajustes.Idioma_Ajustes_Activity"></activity>
+        <activity
+            android:name=".Unirse_Sala_Activity"
+            android:label="@string/title_activity_unirse__sala_"
+            android:parentActivityName=".PaginaPrincipal_Activity"
+            android:theme="@style/Theme.ProyectoFinal.NoActionBar" />
+        <activity
+            android:name=".ui.Ajustes.CambiarRecuperarContrasena_Activity"
+            android:parentActivityName=".PaginaPrincipal_Activity" />
+        <activity
+            android:name=".RecuperarContrasena_Activity"
+            android:parentActivityName=".MainActivity" />
+        <activity android:name=".ui.Ajustes.VerPerfil_Activity" />
+        <activity
+            android:name=".BorrarSala_Activity"
+            android:label="@string/title_activity_borrar_sala_"
+            android:parentActivityName=".PaginaPrincipal_Activity"
+            android:theme="@style/Theme.ProyectoFinal.NoActionBar" />
         <activity
             android:name=".Sucesos_Activity"
             android:label="@string/title_activity_sucesos_"
-            android:theme="@style/Theme.ProyectoFinal.NoActionBar"></activity>
+            android:theme="@style/Theme.ProyectoFinal.NoActionBar" />
         <activity
             android:name=".InvitarGente_Activity"
             android:label="@string/title_activity_invitar_gente_"
@@ -20,7 +38,8 @@
         <activity
             android:name=".EleccionSala_Activity"
             android:label="@string/title_activity_eleccion_sala_"
-            android:theme="@style/Theme.ProyectoFinal.NoActionBar"  android:parentActivityName=".PaginaPrincipal_Activity" />
+            android:parentActivityName=".PaginaPrincipal_Activity"
+            android:theme="@style/Theme.ProyectoFinal.NoActionBar" />
         <activity
             android:name=".SalaPersonal_Activity"
             android:label="@string/title_activity_sala_personal_"
@@ -28,12 +47,15 @@
         <activity
             android:name=".CrearSala_Activity"
             android:label="@string/title_activity_crear_sala_"
+            android:parentActivityName=".PaginaPrincipal_Activity"
             android:theme="@style/Theme.ProyectoFinal.NoActionBar" />
         <activity
             android:name=".PaginaPrincipal_Activity"
-            android:label="@string/title_activity_pagina_principal_"
+            android:label="@string/hola"
             android:theme="@style/Theme.ProyectoFinal.NoActionBar" />
-        <activity android:name=".Registro_Activity" />
+        <activity
+            android:name=".Registro_Activity"
+            android:parentActivityName=".MainActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

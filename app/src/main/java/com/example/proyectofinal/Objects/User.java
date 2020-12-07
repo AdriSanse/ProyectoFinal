@@ -12,10 +12,9 @@ public class User {
         this.email = email;
     }
 
-    public User(String id, String nombre, String contrasena, String email, String telefono) {
+    public User(String id, String nombre, String email, String telefono) {
         this.id = id;
         this.nombre = nombre;
-        this.contrasena = contrasena;
         this.email = email;
         this.telefono = telefono;
     }

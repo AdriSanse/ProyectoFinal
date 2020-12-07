@@ -1,2 +1,120 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <string name="app_name">Final project</string>
+    <string name="nombre">Name</string>
+    <string name="registrarse">Register</string>
+    <string name="correo">Email</string>
+    <string name="contrasena">Password</string>
+    <string name="repetir_contrasena">Repeat Password</string>
+    <string name="telefono">Phone</string>
+    <string name="inicio_sesion">Login</string>
+    <string name="crear_sala">Create Room</string>
+    <string name="ver_perfil">View Profile</string>
+    <string name="ajustes">Settings</string>
+    <string name="invitar_gente">Invite People</string>
+    <string name="actividad_sala">Room Activity</string>
+    <string name="gasto_dinero">Expense Money</string>
+    <string name="agregar_dinero">Add Money</string>
+    <string name="asunto">Subject</string>
+    <string name="fecha">Date</string>
+    <string name="dinero">Money</string>
+    <string name="unirse">Join a Room</string>
+    <string name="calendario">Calendar</string>
+    <string name="actualizar">Update</string>
+    <string name="guardar_cambios">Save Changes</string>
+    <string name="nombre_sala">Room Name</string>
+    <string name="nombre_usuario">Username</string>
+    <string name="correo_amigo">Friend Email</string>
+    <string name="despliegue">Display to Invite</string>
+    <string name="invitar">Invite</string>
+    <string name="ayuda">Help</string>
+    <string name="idioma">Language</string>
+    <string name="aceptar">Accept</string>
+    <string name="cancelar">Cancel</string>
+    <string name="idiomasTitulo">Languages</string>
+    <string name="compartir">Share</string>
+    <string name="usoDatos">Usage Data</string>
+    <string name="cambioIdioma">Language</string>
+    <string name="notificacion">App Notificacions</string>
+    <string name="cambioContra">Change Password</string>
+    <string name="privacidad">Privacy</string>
+    <string name="sobreNosotrosTitulo">About Us</string>
+    <string name="cerrar_sesion">Close Session</string>
+    <string name="nosotros">About Us</string>
+    <string name="actu">Update Money</string>
+    <string name="actividad">See Room Activity</string>
+    <string name="bienvenido">Welcome to the App</string>
+    <string name="cambiarPass">Change Password</string>
+    <string name="btnUnirse">Join a Room</string>
+    <string name="borrarSalasHome">Delete yourself from one of your Rooms</string>
+    <string name="rellenarUnirseSala">Fill in the field to be able to join a Room</string>
+    <string name="bienvenida">Welcome to the application</string>
+    <string name="passOlvidada">You forgot your password, click here</string>
+    <string name="compartirApp">Share the App</string>
+    <string name="invitarGente">Invite People</string>
+    <string name="gastos">Expenses</string>
+    <string name="ingresos">Income</string>
+    <string name="crearSuceso">Create Event</string>
+    <string name="verActividad">See Activity</string>
+    <string name="salirSala">Leave the Room</string>
+
+    <string name="espanol">Spanish</string>
+    <string name="francia">France</string>
+    <string name="aleman">German</string>
+    <string name="ingles">English</string>
+    <string name="seleccionaIdioma">Select the Language</string>
+    <string name="seleccionaIdiomaTexto">Select the language you want to have in the app</string>
+
+
+    <string name="ayudaEscrita">Welcome to the application to create rooms where you can keep track of money determined by the room leader.</string>
+    <string name="ayudaEscrita1">1st Click on the Create Room button if you want to be the leader of the Room </string>
+    <string name="ayudaEscrita2">2nd Once there you can give it a name, so that you can later know which room to enter and the money with which you want to create the room</string>
+    <string name="ayudaEscrita3">3rd If, on the contrary, you want to join a room, press the button Join a Room and there you must write the code of the room that the leader will provide you through a message.</string>
+    <string name="ayudaEscrita4">4th When you press the Room Activity button, you will be able to select a room where you are and you will be able to enter an event in which you have spent money that affects your roommates or see the events of she.</string>
+    <string name="ayudaEscrita5">5th When you click on the button to Delete Room, a screen will appear in which the rooms to which you belong will appear and you will be able to leave it, it will notify you if you are the leader or a guest.</string>
+
+    <string name="sobreNosotros">I am a student of the higher degree of Multiplatform Application Development, this is my final degree project.</string>
+
+    <string name="emailFallo"> The email is required</string>
+    <string name="contrasenaFallo">The password is required</string>
+    <string name="contrasenaFalloLongitud">The password must be at least 6 characters long</string>
+    <string name="telefonoFallo">The phone is required</string>
+    <string name="nombreFallo">The name is required</string>
+    <string name="dineroFallo">The money is required</string>
+    <string name="asuntoFallo">The subject is required</string>
+    <string name="fechaFallo">The date is required</string>
+    <string name="rellenarCampo">Fill in the field to join a Room</string>
+
+    <string name="registroEspera">You are registering...</string>
+    <string name="cambioContrasenaEspera">Wait a moment, check your inbox...</string>
+    <string name="eresCreadorBorrarSala">You are Creator, Delete Room</string>
+    <string name="eresInvitado">You are a member of the room, you want to leave it</string>
+    <string name="borroConExito">Deleted successfully</string>
+
+
+    <string name="invitarGenteGmail">Invite people to my room</string>
+    <string name="mensajeGmail">I invite you to my room, copy this identifier to join my room</string>
+
+    <string name="hola">Main Page Activity</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_home">Start</string>
+    <string name="menu_gallery">View profile</string>
+
+    <string name="recuperarContrasenaTitulo">Recover password</string>
+    <string name="registroTitulo">Registry</string>
+
+    <string name="title_activity_eleccion_sala_">Choice Room Activity</string>
+    <string name="title_activity_invitar_gente_">Invite People Activity</string>
+    <string name="title_activity_sucesos_">Eventos Activity</string>
+    <string name="title_activity_crear_sala_">Create Room Activity</string>
+    <string name="title_activity_sala_personal_">Personal Room Activity</string>
+    <string name="title_activity_borrar_sala_">Delete Room Activity</string>
+    <string name="title_activity_datos_">Data Activity</string>
+    <string name="title_activity_unirse__sala_">Join Room Activity</string>
+</resources>

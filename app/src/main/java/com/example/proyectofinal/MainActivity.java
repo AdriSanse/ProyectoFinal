@@ -40,6 +40,7 @@ public class MainActivity extends AppCompatActivity implements OnClickListener{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         //Carga el idioma seleccionado
+        System.out.println();
         guardarLocale();
 
         mauth = new Autentificacion();
@@ -59,6 +60,11 @@ public class MainActivity extends AppCompatActivity implements OnClickListener{
         btnLogin.setOnClickListener(this);
         correo.setText("adrian15sanse@gmail.com");
         contrasena.setText("123123");
+        boolean result = getIntent().getBooleanExtra("cerrarSesion",false);
+        if(result){
+            System.out.println("Cerrar Sesion");
+            mauth.logOut();
+        }
 
         contrasena.addTextChangedListener(new TextWatcher() {
             @Override
@@ -103,9 +109,9 @@ public class MainActivity extends AppCompatActivity implements OnClickListener{
     }
 
     public void verIdiomas(){
-        String[] listaItems = {"Francia", "Ingles", "Aleman", "Español"};
+        String[] listaItems = {getString(R.string.francia), getString(R.string.ingles),getString(R.string.aleman), getString(R.string.espanol)};
         AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-        builder.setTitle("Elija idioma");
+        builder.setTitle(getString(R.string.seleccionaIdioma));
         builder.setSingleChoiceItems(listaItems, -1, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
@@ -142,12 +148,12 @@ public class MainActivity extends AppCompatActivity implements OnClickListener{
         getBaseContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
         //guardar datos de preferencia
         SharedPreferences.Editor editor = getSharedPreferences("Ajustes",MODE_PRIVATE).edit();
-        editor.putString("Mi idioma", lang);
+        editor.putString("idioma", lang);
         editor.apply();
     }
     public void guardarLocale (){
         SharedPreferences preferences = getSharedPreferences("Ajustes", Activity.MODE_PRIVATE);
-        String idioma = preferences.getString("Mi idioma", "");
+        String idioma = preferences.getString("idioma", "");
         setLocale(idioma);
     }
 

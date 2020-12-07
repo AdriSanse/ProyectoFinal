@@ -1,20 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:showIn="navigation_view">
 
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_home"
-            android:icon="@drawable/ic_menu_camera"
+            android:icon="@drawable/ic_hogar"
             android:title="@string/menu_home" />
         <item
-            android:id="@+id/nav_gallery"
+            android:id="@+id/nav_perfil"
             android:icon="@drawable/user"
             android:title="@string/ver_perfil" />
         <item
-            android:id="@+id/nav_slideshow"
-            android:icon="@drawable/user"
-            android:title="@string/cerrar_sesion" />
+            android:id="@+id/ajustesFragment"
+            android:icon="@drawable/ic_configuraciones"
+            android:title="@string/ajustes" />
+        <item
+            android:id="@+id/ayudaFragment"
+            android:icon="@drawable/ic_ayuda"
+            android:title="@string/ayuda" />
+        <item
+            android:id="@+id/sobreNosotros_Fragment"
+            android:icon="@drawable/ic_sobre_nosotros"
+            android:title="@string/nosotros" />
+        <item
+            android:id="@+id/compartirAppFragment"
+            android:icon="@drawable/ic_compartir"
+            android:title="@string/compartir" />
+
     </group>
 </menu>

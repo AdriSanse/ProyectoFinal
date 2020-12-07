@@ -1,64 +1,102 @@
-package com.example.proyectofinal;
+package com.example.proyectofinal.ui.Ajustes;
 
+import android.annotation.SuppressLint;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.res.Configuration;
+import android.net.Uri;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link AjustesFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
-public class AjustesFragment extends Fragment {
+import com.example.proyectofinal.MainActivity;
+import com.example.proyectofinal.RecuperarContrasena_Activity;
+import com.example.proyectofinal.R;
+import com.example.proyectofinal.providers.Autentificacion;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.dynamiclinks.DynamicLink;
+import com.google.firebase.dynamiclinks.FirebaseDynamicLinks;
+import com.google.firebase.dynamiclinks.ShortDynamicLink;
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+import static android.content.Context.MODE_PRIVATE;
+
+public class AjustesFragment extends Fragment implements View.OnClickListener{
+
+    View mView;
+    CardView cerrarSesion, prueba, verPerfil, cambiarContrasena, idioma;
+    Autentificacion mAuth;
 
     public AjustesFragment() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment AjustesFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static AjustesFragment newInstance(String param1, String param2) {
-        AjustesFragment fragment = new AjustesFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
+    @SuppressLint("WrongViewCast")
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
+        mView = inflater.inflate(R.layout.fragment_ajustes, container, false);
+        mAuth = new Autentificacion();
+        cerrarSesion = mView.findViewById(R.id.cerrarSesionAjustes);
+        cerrarSesion.setOnClickListener(this);
+        prueba = mView.findViewById(R.id.ayudaAjustes);
+        prueba.setOnClickListener(this);
+        verPerfil = mView.findViewById(R.id.verPerfilAjustes);
+        verPerfil.setOnClickListener(this);
+        cambiarContrasena = mView.findViewById(R.id.cambiarContrasenaAjustes);
+        cambiarContrasena.setOnClickListener(this);
+        idioma = mView.findViewById(R.id.cambiarIdiomaAjustes);
+        idioma.setOnClickListener(this);
+        guardarLocale();
+        return mView;
+    }
+    private void setLocale(String lang) {
+        Locale locale = new Locale(lang);
+        Locale.setDefault(locale);
+        Configuration config = new Configuration();
+        getContext().getResources().updateConfiguration(config, getContext().getResources().getDisplayMetrics());
+        //guardar datos de preferencia
+        SharedPreferences.Editor editor = getActivity().getSharedPreferences("Ajustes", MODE_PRIVATE).edit();
+        editor.putString("idioma", lang);
+        editor.apply();
+    }
+    public void guardarLocale (){
+        SharedPreferences preferences = getActivity().getSharedPreferences("Ajustes", MODE_PRIVATE);
+        String idioma = preferences.getString("idioma", "");
+        setLocale(idioma);
     }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+    public void onClick(View view) {
+        if(R.id.cerrarSesionAjustes==view.getId()){
+            Intent miIntentoLogin = new Intent(getActivity(), MainActivity.class);
+            miIntentoLogin.putExtra("cerrarSesion",true);
+            miIntentoLogin.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(miIntentoLogin);
         }
-    }
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_ajustes, container, false);
+        if(R.id.verPerfilAjustes==view.getId()){
+            Intent miIntentoPerfil = new Intent(getActivity(), VerPerfil_Activity.class);
+            startActivity(miIntentoPerfil);
+        }
+        if(R.id.cambiarContrasenaAjustes==view.getId()){
+            Intent miIntentoContrasena = new Intent(getActivity(), CambiarRecuperarContrasena_Activity.class);
+            startActivity(miIntentoContrasena);
+        }
+        if(R.id.cambiarIdiomaAjustes==view.getId()){
+            Intent miIntentoIdioma = new Intent(getActivity(), Idioma_Ajustes_Activity.class);
+            startActivity(miIntentoIdioma);
+        }
     }
 }

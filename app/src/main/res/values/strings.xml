@@ -1,7 +1,5 @@
 <resources>
-    <string name="app_name">ProyectoFinal</string>
-
-
+    <string name="app_name">Proyecto Final</string>
     <string name="nombre">Nombre</string>
     <string name="registrarse">Registrarse</string>
     <string name="correo">Correo</string>
@@ -19,6 +17,7 @@
     <string name="asunto">Asunto</string>
     <string name="fecha">Fecha</string>
     <string name="dinero">Dinero</string>
+    <string name="unirse">Unirse a una Sala</string>
     <string name="calendario">Calendario</string>
     <string name="actualizar">Actualizar</string>
     <string name="guardar_cambios">Guardar Cambios</string>
@@ -27,11 +26,75 @@
     <string name="correo_amigo">Correo Amigo</string>
     <string name="despliegue">Desplegar para Invitar</string>
     <string name="invitar">Invitar</string>
+    <string name="ayuda">Ayuda</string>
+    <string name="idioma">Idioma</string>
+    <string name="aceptar">Aceptar</string>
+    <string name="cancelar">Cancelar</string>
+    <string name="idiomasTitulo">Idiomas</string>
+    <string name="compartir">Compartir</string>
+    <string name="usoDatos">Uso de Datos</string>
+    <string name="cambioIdioma">Idioma</string>
+    <string name="notificacion">Notificaciones de la app</string>
+    <string name="cambioContra">Cambiar contraseña</string>
+    <string name="privacidad">Privacidad</string>
+    <string name="sobreNosotrosTitulo">Sobre Nosotros</string>
     <string name="cerrar_sesion">Cerrar Sesion</string>
     <string name="nosotros">Sobre Nosotros</string>
     <string name="actu">Actualizar Dinero</string>
     <string name="actividad">Ver Actividad Sala</string>
-    <string name="title_activity_pagina_principal_">PaginaPrincipal_Activity</string>
+    <string name="bienvenido">Bienvenido a la App</string>
+    <string name="cambiarPass">Cambiar Contrasena</string>
+    <string name="btnUnirse">Unirse a una Sala</string>
+    <string name="borrarSalasHome">Borrarte de una de tus Salas</string>
+    <string name="rellenarUnirseSala">Rellene el campo para poder unirse a una Sala</string>
+    <string name="bienvenida">Bienvenid@ a la aplicacion</string>
+    <string name="passOlvidada">Olvidastes tu contrasena, presione aqui</string>
+    <string name="compartirApp">Compartir la app</string>
+    <string name="invitarGente">Invitar Gente</string>
+    <string name="gastos">Gastos</string>
+    <string name="ingresos">Ingresos</string>
+    <string name="crearSuceso">Crear Suceso</string>
+    <string name="verActividad">Ver Actividad</string>
+    <string name="salirSala">Salir de la sala</string>
+
+    <string name="espanol">Español</string>
+    <string name="francia">Francia</string>
+    <string name="aleman">Aleman</string>
+    <string name="ingles">Ingles</string>
+    <string name="seleccionaIdioma">Selecciona el idioma</string>
+    <string name="seleccionaIdiomaTexto">Selecciona el idioma que desea tener en la app</string>
+
+
+    <string name="ayudaEscrita">Bienvenido a la aplicacion para crear Salas en las que podras llevar un control de un dinero que determine el lider de la sala.</string>
+    <string name="ayudaEscrita1">1ª Pulse sobre el boton de Crear Sala si desea ser el lider de la Sala</string>
+    <string name="ayudaEscrita2">2ª Una vez hay podra ponerle un nombre, para luego poder saber en que sala entrar y el dinero con el que desea crear la sala.</string>
+    <string name="ayudaEscrita3">3ª Si por lo contrario quieres unirte a alguna sala pulsa el boton Unirse a una Sala y alli deberas escribir el codigo de la sala que te proporcionara el lider mediante un mensaje.</string>
+    <string name="ayudaEscrita4">4ª Cuando pulse el boton de Actividad de la Sala podra seleccionar una sala en la que estes y podras entre poner un suceso en el que hayas gastado dinero que repercute en tus compañeros de Sala o ver los sucesos de ella.</string>
+    <string name="ayudaEscrita5">5ª Cuando pulse sobre el boton para Borrar Sala le saldra una pantalla en la que saldran las salas a las que pertenece y podra salir de ella, le notificara si es usted el lider o un invitado.</string>
+
+    <string name="sobreNosotros">Soy un alumno de el grado superior de Desarrollo de Aplicaciones en Multiplataforma, este es mi proyecto de fin de grado.</string>
+
+    <string name="emailFallo">El email es obligatorio</string>
+    <string name="contrasenaFallo">La contraseña es obligatorio</string>
+    <string name="contrasenaFalloLongitud">La contraseña debe tener minimo 6 caracteres</string>
+    <string name="telefonoFallo">El telefono es obligatorio</string>
+    <string name="nombreFallo">El nombre es obligatorio</string>
+    <string name="dineroFallo">El dinero es obligatorio</string>
+    <string name="asuntoFallo">El asunto es obligatorio</string>
+    <string name="fechaFallo">La fecha es obligatorio</string>
+    <string name="rellenarCampo">Rellene el campo para poder unirse a una Sala</string>
+
+    <string name="registroEspera">Se esta registrando...</string>
+    <string name="cambioContrasenaEspera">Espere un momento, compruebe su bandeja de entrada...</string>
+    <string name="eresCreadorBorrarSala">Eres el creador, deseas borrar la Sala</string>
+    <string name="eresInvitado">Eres un miembro de la sala, deseas abandonarla</string>
+    <string name="borroConExito">Se borro con exito</string>
+
+
+    <string name="invitarGenteGmail">Invitar gente a mi Sala</string>
+    <string name="mensajeGmail">Te invito a mi Sala, copia este identificador para unirte a mi sala </string>
+
+    <string name="hola">PaginaPrincipal_Activity</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="nav_header_title">Android Studio</string>
@@ -39,22 +102,19 @@
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
 
-    <string name="menu_home">Home</string>
-    <string name="menu_gallery">Gallery</string>
-    <string name="menu_slideshow">Slideshow</string>
+    <string name="menu_home">Inicio</string>
+    <string name="menu_gallery">Ver Perfil</string>
     <string name="title_activity_crear_sala_">CrearSala_Activity</string>
-    <!-- Strings used for fragments for navigation -->
-    <string name="first_fragment_label">First Fragment</string>
-    <string name="second_fragment_label">Second Fragment</string>
-    <string name="next">Next</string>
-    <string name="previous">Previous</string>
-
-    <string name="hello_first_fragment">Hello first fragment</string>
-    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="title_activity_sala_personal_">SalaPersonal_Activity</string>
+    <string name="recuperarContrasenaTitulo">Recuperar Contrasena</string>
+    <string name="registroTitulo">Registro</string>
     <string name="title_activity_eleccion_sala_">EleccionSala_Activity</string>
     <string name="title_activity_invitar_gente_">InvitarGente_Activity</string>
     <string name="title_activity_sucesos_">Sucesos_Activity</string>
+    <string name="title_activity_borrar_sala_">BorrarSala_Activity</string>
+
+    <string name="title_activity_datos_">Datos_Activity</string>
+    <string name="title_activity_unirse__sala_">Unirse_Sala_Activity</string>
 
 
 </resources>

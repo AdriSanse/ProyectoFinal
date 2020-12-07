@@ -1,7 +1,10 @@
 package com.example.proyectofinal.providers;
 
 
+import androidx.annotation.NonNull;
+
 import com.example.proyectofinal.Objects.User;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
@@ -25,8 +28,8 @@ public class UsuariosProvider {
         return inter.set(miUser);
     }
 
-    public Task<DocumentSnapshot> getUsuario(String id){
-        return databaseUser.document(id).get();
+    public DocumentReference getUsuario(String id){
+        return databaseUser.document(id);
     }
 
     public Task<Void> updateUser(String id, User user){

@@ -1,2 +1,119 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <string name="app_name">Projet final</string>
+    <string name="nombre">Nom</string>
+    <string name="registrarse">S inscrire</string>
+    <string name="correo">Mail</string>
+    <string name="contrasena">Mot de passe</string>
+    <string name="repetir_contrasena">Répéter le mot de passe</string>
+    <string name="telefono">Téléphone</string>
+    <string name="inicio_sesion">Connexion</string>
+    <string name="crear_sala">Créer une salle</string>
+    <string name="ver_perfil">Afficher le profil</string>
+    <string name="ajustes">Paramétre</string>
+    <string name="invitar_gente">Inviter des personnes</string>
+    <string name="actividad_sala">Activité de la salle</string>
+    <string name="gasto_dinero">Dépenser en argent</string>
+    <string name="agregar_dinero">Ajouter de l\'argent</string>
+    <string name="asunto">Objet</string>
+    <string name="fecha">Date</string>
+    <string name="dinero">Argent</string>
+    <string name="unirse">Rejoindre une salle</string>
+    <string name="calendario">Calendrier</string>
+    <string name="actualizar">Mettre á jour</string>
+    <string name="guardar_cambios">Enregistrer les modifications</string>
+    <string name="nombre_sala">Nom de la salle</string>
+    <string name="nombre_usuario">Nom d\'utilisateur</string>
+    <string name="correo_amigo">Email Ami</string>
+    <string name="despliegue">Déployer pour inviter</string>
+    <string name="invitar">Inviter</string>
+    <string name="ayuda">Aidez-moi</string>
+    <string name="idioma">Langage</string>
+    <string name="aceptar">Accepter</string>
+    <string name="cancelar">Annuler</string>
+    <string name="idiomasTitulo">Langues</string>
+    <string name="compartir">Partager</string>
+    <string name="usoDatos">Utilisation des données</string>
+    <string name="cambioIdioma">Langage</string>
+    <string name="notificacion">Notifications d\'application</string>
+    <string name="cambioContra">Changer le mot de passe</string>
+    <string name="privacidad">Confidentialité</string>
+    <string name="sobreNosotrosTitulo">À propos de nous</string>
+    <string name="cerrar_sesion">Fermer la session</string>
+    <string name="nosotros">À propos de nous</string>
+    <string name="actu">Mettre à jour l\'argent</string>
+    <string name="actividad">Voir l\'activité de la salle</string>
+    <string name="bienvenido">Bienvenue sur l\'appli</string>
+    <string name="cambiarPass">Changer le mot de passe</string>
+    <string name="btnUnirse">Rejoignez la salle</string>
+    <string name="borrarSalasHome">Vous supprimer de l\'une de vos salles</string>
+    <string name="rellenarUnirseSala">Remplissez le champ pour pouvoir rejoindre une salle</string>
+    <string name="bienvenida">Bienvenue sur l\'appli</string>
+    <string name="passOlvidada">Vous avez oublié votre mot de passe, cliquez ici</string>
+    <string name="compartirApp">Partagez l\'appli</string>
+    <string name="invitarGente">Inviter des gens</string>
+    <string name="gastos">Dépenses</string>
+    <string name="ingresos">Le revenu</string>
+    <string name="crearSuceso">Créer un évènement</string>
+    <string name="verActividad">Voir l\'activité</string>
+    <string name="salirSala">Sortez de la pièce</string>
+
+    <string name="espanol">Espagnol</string>
+    <string name="francia">Français</string>
+    <string name="aleman">Allemand</string>
+    <string name="ingles">Anglais</string>
+    <string name="seleccionaIdioma">Choisir la langue</string>
+    <string name="seleccionaIdiomaTexto">Sélectionnez la langue que vous souhaitez utiliser dans l\'application</string>
+
+    <string name="ayudaEscrita">Bienvenue dans l\'application pour créer des salles dans lesquelles vous pouvez garder une trace de l\'argent déterminé par le chef de la salle.</string>
+    <string name="ayudaEscrita1">1º Cliquez sur le bouton Créer une salle si vous voulez être le leader de la salle.</string>
+    <string name="ayudaEscrita2">2ª Une fois sur place, vous pouvez mettre un nom, afin de savoir plus tard dans quelle pièce entrer et l\'argent avec lequel vous voulez créer la pièce.</string>
+    <string name="ayudaEscrita3">3º Si, au contraire, vous souhaitez rejoindre une salle, appuyez sur le bouton Rejoindre une salle et là vous devez écrire le code de la salle que l\'animateur vous fournira avec un message.</string>
+    <string name="ayudaEscrita4">4º Lorsque vous appuyez sur le bouton Activité de la salle, vous pouvez sélectionner une pièce dans laquelle vous vous trouvez et vous pouvez soit mettre un événement dans lequel vous avez dépensé de l\'argent qui affecte vos colocataires, soit voir les événements de celui-ci.</string>
+    <string name="ayudaEscrita5">5 Lorsque vous cliquez sur le bouton Supprimer la salle, un écran apparaîtra dans lequel les chambres auxquelles vous appartenez apparaîtront et vous pourrez en sortir, il vous notifiera si vous êtes le leader ou un invité.</string>
+
+    <string name="sobreNosotros">Je suis étudiant au niveau supérieur de développement d\'applications multiplateformes, ceci est mon projet de diplôme final.</string>
+
+    <string name="emailFallo">Email est obligatoire</string>
+    <string name="contrasenaFallo">Mot de passe obligatoire</string>
+    <string name="contrasenaFalloLongitud">Le mot de passe doit comporter au moins 6 caractères</string>
+    <string name="telefonoFallo">Le téléphone est obligatoire</string>
+    <string name="nombreFallo">Le nom est obligatoire</string>
+    <string name="dineroFallo">L\'argent est obligatoire</string>
+    <string name="asuntoFallo">Le sujet est obligatoire</string>
+    <string name="fechaFallo">La date est obligatoire</string>
+    <string name="rellenarCampo">Remplissez le champ pour pouvoir rejoindre une salle</string>
+
+    <string name="registroEspera">S\'inscrit...</string>
+    <string name="cambioContrasenaEspera">Attendez un instant, vérifiez votre boîte de réception...</string>
+    <string name="eresCreadorBorrarSala">Vous êtes le créateur, vous souhaitez supprimer la salle</string>
+    <string name="eresInvitado">Vous êtes membre de la salle, vous souhaitez partir</string>
+    <string name="borroConExito">Supprimé avec succès</string>
+
+    <string name="invitarGenteGmail">Inviter des gens dans ma chambre</string>
+    <string name="mensajeGmail">Je vous invite dans ma salle, copiez cet identifiant pour rejoindre ma salle</string>
+
+    <string name="hola">Activité de la page principale</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_home">Début</string>
+    <string name="menu_gallery">Voir le profil</string>
+
+    <string name="recuperarContrasenaTitulo">Récupérer le mot de Passe</string>
+    <string name="registroTitulo">Enregistrement</string>
+
+    <string name="title_activity_crear_sala_">Créer une salle d\'activités</string>
+    <string name="title_activity_sala_personal_">Salle d\'activités personnelles</string>
+    <string name="title_activity_eleccion_sala_">Activité de la salle de choix</string>
+    <string name="title_activity_invitar_gente_">Activité d\'invitation de personnes</string>
+    <string name="title_activity_sucesos_">Événements d\'activité</string>
+    <string name="title_activity_borrar_sala_">Supprimer la salle d\'activités</string>
+    <string name="title_activity_datos_">Données d\'activité</string>
+    <string name="title_activity_unirse__sala_">Rejoindre l\'activité Sala</string>
+
+</resources>
