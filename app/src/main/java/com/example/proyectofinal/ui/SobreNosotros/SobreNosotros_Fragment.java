@@ -37,12 +37,12 @@ public class SobreNosotros_Fragment extends Fragment {
         getContext().getResources().updateConfiguration(config, getContext().getResources().getDisplayMetrics());
         //guardar datos de preferencia
         SharedPreferences.Editor editor = getActivity().getSharedPreferences("Ajustes", MODE_PRIVATE).edit();
-        editor.putString("Mi idioma", lang);
+        editor.putString("idioma", lang);
         editor.apply();
     }
     public void guardarLocale (){
         SharedPreferences preferences = getActivity().getSharedPreferences("Ajustes", MODE_PRIVATE);
-        String idioma = preferences.getString("Mi idioma", "");
+        String idioma = preferences.getString("idioma", "");
         setLocale(idioma);
     }
 }

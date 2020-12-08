@@ -35,9 +35,10 @@ public class CambiarRecuperarContrasena_Activity extends AppCompatActivity imple
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cambiar_recuperar_contrasena);
-        getSupportActionBar().setTitle("Recuperar o Cambiar Contrasena");
-        guardarLocale();
+        getSupportActionBar().setTitle(getString(R.string.cambioContra));
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        guardarLocale();
+
 
         mauth = new Autentificacion();
         progressDialog = new ProgressDialog(this);
@@ -89,12 +90,12 @@ public class CambiarRecuperarContrasena_Activity extends AppCompatActivity imple
         getBaseContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
         //guardar datos de preferencia
         SharedPreferences.Editor editor = getSharedPreferences("Ajustes",MODE_PRIVATE).edit();
-        editor.putString("Mi idioma", lang);
+        editor.putString("idioma", lang);
         editor.apply();
     }
     public void guardarLocale (){
         SharedPreferences preferences =  getSharedPreferences("Ajustes", MODE_PRIVATE);
-        String idioma = preferences.getString("Mi idioma", "");
+        String idioma = preferences.getString("idioma", "");
         setLocale(idioma);
     }
 

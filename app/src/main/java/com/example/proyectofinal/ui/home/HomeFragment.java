@@ -93,12 +93,12 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
         getContext().getResources().updateConfiguration(config, getContext().getResources().getDisplayMetrics());
         //guardar datos de preferencia
         SharedPreferences.Editor editor = getActivity().getSharedPreferences("Ajustes", MODE_PRIVATE).edit();
-        editor.putString("Mi idioma", lang);
+        editor.putString("idioma", lang);
         editor.apply();
     }
     public void guardarLocale (){
         SharedPreferences preferences = getActivity().getSharedPreferences("Ajustes", MODE_PRIVATE);
-        String idioma = preferences.getString("Mi idioma", "");
+        String idioma = preferences.getString("idioma", "");
         setLocale(idioma);
     }
 
@@ -117,7 +117,6 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
                     Intent miIntento3 = new Intent(getActivity(),miActivity);
                     miIntento3.putExtra("id",misSalas);
                     startActivity(miIntento3);
-                    Toast.makeText(getActivity(), ""+id, Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -133,7 +132,6 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
             startActivity(miIntentoActividad);
         }
         if(view.getId()==R.id.btnBorrarSalas){
-
             guardarSalas(BorrarSala_Activity.class);
         }
         if(view.getId()==R.id.btnHomeUnirseSala){

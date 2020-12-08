@@ -37,12 +37,12 @@ import static android.content.Context.MODE_PRIVATE;
 
 public class GalleryFragment extends Fragment implements View.OnClickListener{
 
-    TextView textoUsuario, textoCorreo, textoTelefono;
-    TextInputLayout textoUsuarioLayout, textoCorreoLayout, textoTelefonoLayout;
+    TextView textoUsuario, textoTelefono;
+    TextInputLayout textoUsuarioLayout, textoTelefonoLayout;
     Button btnGuardarCambios;
     UsuariosProvider usersProvider;
     Autentificacion mAuth;
-    String id ="";
+    String id ="", correo = "";
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_editar_perfil, container, false);
@@ -52,11 +52,9 @@ public class GalleryFragment extends Fragment implements View.OnClickListener{
         usersProvider = new UsuariosProvider();
 
         textoUsuario = root.findViewById(R.id.textUserPerfil);
-        textoCorreo = root.findViewById(R.id.textCorreoPerfil);
         textoTelefono = root.findViewById(R.id.textTelefonoPerfil);
 
         textoUsuarioLayout = root.findViewById(R.id.usuarioLayoutVerPerfil);
-        textoCorreoLayout = root.findViewById(R.id.correoVerPerfilLayout);
         textoTelefonoLayout = root.findViewById(R.id.telefonoLayoutVerPerfil);
 
         btnGuardarCambios = root.findViewById(R.id.btnGuardarCambiosPerfil);
@@ -112,12 +110,12 @@ public class GalleryFragment extends Fragment implements View.OnClickListener{
         getContext().getResources().updateConfiguration(config, getContext().getResources().getDisplayMetrics());
         //guardar datos de preferencia
         SharedPreferences.Editor editor = getActivity().getSharedPreferences("Ajustes", MODE_PRIVATE).edit();
-        editor.putString("Mi idioma", lang);
+        editor.putString("idioma", lang);
         editor.apply();
     }
     public void guardarLocale (){
         SharedPreferences preferences = getActivity().getSharedPreferences("Ajustes", MODE_PRIVATE);
-        String idioma = preferences.getString("Mi idioma", "");
+        String idioma = preferences.getString("idioma", "");
         setLocale(idioma);
     }
 
@@ -127,7 +125,7 @@ public class GalleryFragment extends Fragment implements View.OnClickListener{
             public void onSuccess(DocumentSnapshot documentSnapshot) {
                 id=documentSnapshot.get("id").toString();
                 textoUsuario.setText(documentSnapshot.get("nombre").toString());
-                textoCorreo.setText(documentSnapshot.get("email").toString());
+                correo =documentSnapshot.get("nombre").toString();
                 textoTelefono.setText(documentSnapshot.get("telefono").toString());
             }
         }).addOnFailureListener(new OnFailureListener() {
@@ -141,7 +139,7 @@ public class GalleryFragment extends Fragment implements View.OnClickListener{
     public void guardarCambios(){
         String telefono = textoTelefono.getText().toString();
         String usuario = textoUsuario.getText().toString();
-        String correo = textoCorreo.getText().toString();
+
         if(TextUtils.isEmpty(usuario) || TextUtils.isEmpty(telefono)){
             if(TextUtils.isEmpty(usuario)){
                 textoUsuarioLayout.setError(getString(R.string.nombreFallo));

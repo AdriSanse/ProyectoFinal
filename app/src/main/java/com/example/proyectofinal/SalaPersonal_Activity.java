@@ -48,7 +48,7 @@ public class SalaPersonal_Activity extends AppCompatActivity implements View.OnC
 
     Button btnCalendario, btnGenerarSuceso, btnInvitarGente;
     TextView textoCalendario, textoDinero, textoDineroCambio, textAsunto;
-    String id = "", idUsuario = "", usuario = "", fecha = "";
+    String id = "", idUsuario = "", usuario = "", fecha = "", dineroSala = "";
     RadioButton radioGasto, radioIngreso;
     TextInputLayout dineroLayout, asuntoLayout, calendarioLayout;
     Calendar mCalendar;
@@ -111,9 +111,7 @@ public class SalaPersonal_Activity extends AppCompatActivity implements View.OnC
 
             @Override
             public void afterTextChanged(Editable editable) {
-                if(TextUtils.isEmpty(textAsunto.getText().toString())){
-                    asuntoLayout.setError(getString(R.string.asuntoFallo));
-                }else {
+                if(!TextUtils.isEmpty(textAsunto.getText().toString())){
                     asuntoLayout.setError(null);
                 }
             }
@@ -131,9 +129,7 @@ public class SalaPersonal_Activity extends AppCompatActivity implements View.OnC
 
             @Override
             public void afterTextChanged(Editable editable) {
-                if(TextUtils.isEmpty(textoDineroCambio.getText().toString())){
-                    dineroLayout.setError(getString(R.string.dineroFallo));
-                }else {
+                if(!TextUtils.isEmpty(textoDineroCambio.getText().toString())){
                     dineroLayout.setError(null);
                 }
             }
@@ -151,9 +147,7 @@ public class SalaPersonal_Activity extends AppCompatActivity implements View.OnC
 
             @Override
             public void afterTextChanged(Editable editable) {
-                if(TextUtils.isEmpty(textoCalendario.getText().toString())){
-                    calendarioLayout.setError(getString(R.string.fechaFallo));
-                }else {
+                if(!TextUtils.isEmpty(textoCalendario.getText().toString())){
                     calendarioLayout.setError(null);
                 }
             }
@@ -167,12 +161,12 @@ public class SalaPersonal_Activity extends AppCompatActivity implements View.OnC
         getBaseContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
         //guardar datos de preferencia
         SharedPreferences.Editor editor = getSharedPreferences("Ajustes",MODE_PRIVATE).edit();
-        editor.putString("Mi idioma", lang);
+        editor.putString("idioma", lang);
         editor.apply();
     }
     public void guardarLocale (){
         SharedPreferences preferences = getSharedPreferences("Ajustes", MODE_PRIVATE);
-        String idioma = preferences.getString("Mi idioma", "");
+        String idioma = preferences.getString("idioma", "");
         setLocale(idioma);
     }
 
@@ -196,11 +190,11 @@ public class SalaPersonal_Activity extends AppCompatActivity implements View.OnC
             @Override
             public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
                 if (value != null && !value.isEmpty()) {
-                    textoDinero.setText(roundToHalf(Double.parseDouble(value.getDocuments().get(0).getString("dinero"))));
+                    dineroSala = value.getDocuments().get(0).getString("dinero");
+                    textoDinero.setText(dineroSala);
                 }
             }
         });
-        Toast.makeText(this, "Eres " + idUsuario + " con " + textoDinero.getText().toString(), Toast.LENGTH_SHORT).show();
     }
 
     public void sacarUsuario(){
@@ -231,12 +225,6 @@ public class SalaPersonal_Activity extends AppCompatActivity implements View.OnC
 
     @Override
     public void onClick(View view) {
-//        if(view.getId()==R.id.toolbar){
-//            Intent miIntentoToolbar = new Intent(this, EleccionSala_Activity.class);
-//            miIntentoToolbar.putExtra("id", id);
-//            miIntentoToolbar.putExtra("idUsuario", idUsuario);
-//            startActivity(miIntentoToolbar);
-//        }
         if(view.getId()==R.id.btnCalendario){
             DatePickerDialog datePickerDialog = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
                 @Override
@@ -277,24 +265,22 @@ public class SalaPersonal_Activity extends AppCompatActivity implements View.OnC
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if(task.isSuccessful()){
                             for(DocumentSnapshot document : task.getResult()) {
-                                double dinero = Double.parseDouble("" + document.get("dinero"));
-                                double resultado = dinero - dineroDouble;
-                                final String sResultado = resultado + "";
+                                double resultadoGasto = Double.parseDouble(dineroSala) - dineroDouble;
+                                final String sResultado = resultadoGasto + "";
 
                                 Sucesos miSuceso = new Sucesos();
                                 miSuceso.setDinero(""+dineroDouble);
                                 miSuceso.setAsunto(sAsunto);
                                 miSuceso.setFecha(fecha);
                                 miSuceso.setUsuario(usuario);
-                                miSuceso.setGastoIngreso("Gasto");
+                                miSuceso.setGastoIngreso(getString(R.string.gastos));
                                 DocumentReference actuDinero = db.collection("Salas").document(document.getId()).collection("Sucesos").document();
                                 actuDinero.set(miSuceso).addOnCompleteListener(new OnCompleteListener<Void>() {
                                     @Override
                                     public void onComplete(@NonNull Task<Void> task) {
                                         if(task.isSuccessful()){
-                                            Toast.makeText(SalaPersonal_Activity.this, "Funciona Crear Sucesos Dentro de la Sala", Toast.LENGTH_SHORT).show();
                                             DocumentReference actuDineroSala = db.collection("Salas").document(id);
-                                            actuDineroSala.update("dinero",roundToHalf(resultado)).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                            actuDineroSala.update("dinero",roundToHalf(resultadoGasto)).addOnCompleteListener(new OnCompleteListener<Void>() {
                                                 @Override
                                                 public void onComplete(@NonNull Task<Void> task) {
                                                     if(task.isSuccessful()){
@@ -322,24 +308,22 @@ public class SalaPersonal_Activity extends AppCompatActivity implements View.OnC
 
                         if(task.isSuccessful()){
                             for(DocumentSnapshot document : task.getResult()) {
-                                double dinero = Double.parseDouble("" + document.get("dinero"));
-                                double resultado = dinero + dineroDouble;
-                                final String sResultado = resultado + "";
+                                double resultadoIngreso = Double.parseDouble(dineroSala) + dineroDouble;
 
                                 Sucesos miSuceso = new Sucesos();
                                 miSuceso.setDinero(""+dineroDouble);
                                 miSuceso.setAsunto(sAsunto);
                                 miSuceso.setFecha(fecha);
                                 miSuceso.setUsuario(usuario);
-                                miSuceso.setGastoIngreso("Ingreso");
+                                miSuceso.setGastoIngreso(getString(R.string.ingresos));
+
                                 DocumentReference actuDinero = db.collection("Salas").document(document.getId()).collection("Sucesos").document();
                                 actuDinero.set(miSuceso).addOnCompleteListener(new OnCompleteListener<Void>() {
                                     @Override
                                     public void onComplete(@NonNull Task<Void> task) {
                                         if(task.isSuccessful()){
-                                            Toast.makeText(SalaPersonal_Activity.this, "Funciona Crear Sucesos Dentro de la Sala", Toast.LENGTH_SHORT).show();
                                             DocumentReference actuDineroSala = db.collection("Salas").document(id);
-                                            actuDineroSala.update("dinero",sResultado).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                            actuDineroSala.update("dinero",roundToHalf(resultadoIngreso)).addOnCompleteListener(new OnCompleteListener<Void>() {
                                                 @Override
                                                 public void onComplete(@NonNull Task<Void> task) {
                                                     if(task.isSuccessful()){

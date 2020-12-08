@@ -111,7 +111,7 @@
 
     <string name="title_activity_eleccion_sala_">Choice Room Activity</string>
     <string name="title_activity_invitar_gente_">Invite People Activity</string>
-    <string name="title_activity_sucesos_">Eventos Activity</string>
+    <string name="title_activity_sucesos_">Events Activity</string>
     <string name="title_activity_crear_sala_">Create Room Activity</string>
     <string name="title_activity_sala_personal_">Personal Room Activity</string>
     <string name="title_activity_borrar_sala_">Delete Room Activity</string>

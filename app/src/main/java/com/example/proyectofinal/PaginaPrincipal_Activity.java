@@ -73,21 +73,21 @@ public class PaginaPrincipal_Activity extends AppCompatActivity{
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
-        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-
-                if(item.getItemId()==R.id.ajustesFragment){
-                    Log.e("own", "onDestinationChanged: entro " );
-                    Bundle bundle=new Bundle();
-                    bundle.putString("key","value");
-
-                    return true;
-                }
-
-                return false;
-            }
-        });
+//        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+//            @Override
+//            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+//
+//                if(item.getItemId()==R.id.ajustesFragment){
+//                    Log.e("own", "onDestinationChanged: entro " );
+//                    Bundle bundle=new Bundle();
+//                    bundle.putString("key","value");
+//
+//                    return true;
+//                }
+//
+//                return false;
+//            }
+//        });
 
 
         header = navigationView.getHeaderView(0);
@@ -97,7 +97,6 @@ public class PaginaPrincipal_Activity extends AppCompatActivity{
         mauth = new Autentificacion();
         usersProvider = new UsuariosProvider();
         db = FirebaseFirestore.getInstance();
-
     }
 
     private void setLocale(String lang) {
@@ -116,30 +115,30 @@ public class PaginaPrincipal_Activity extends AppCompatActivity{
         setLocale(idioma);
     }
 
-    @Override
-    protected void onStart() {
-        if(listener==null){
-            cargarDatos();
-        }
-        super.onStart();
-    }
+//    @Override
+//    protected void onStart() {
+//        if(listener==null){
+//            cargarDatos();
+//        }
+//        super.onStart();
+//    }
+//
+//    @Override
+//    protected void onStop() {
+//        listener.remove();
+//        System.out.println("OnStop");
+//        super.onStop();
+//    }
 
-    @Override
-    protected void onStop() {
-        listener.remove();
-        System.out.println("OnStop");
-        super.onStop();
-    }
-
-    public void cargarDatos(){
-        listener =  usersProvider.getUsuario(mauth.getIdUser()).addSnapshotListener(new EventListener<DocumentSnapshot>() {
-            @Override
-            public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
-                nombreUsuario.setText(value.get("nombre").toString());
-                correoUsuario.setText(value.get("email").toString());
-            }
-        });
-    }
+//    public void cargarDatos(){
+//        usersProvider.getUsuario(mauth.getIdUser()).addSnapshotListener(new EventListener<DocumentSnapshot>() {
+//            @Override
+//            public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
+//                nombreUsuario.setText(value.get("nombre").toString());
+//                correoUsuario.setText(value.get("email").toString());
+//            }
+//        });
+//    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

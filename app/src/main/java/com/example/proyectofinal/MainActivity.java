@@ -64,6 +64,7 @@ public class MainActivity extends AppCompatActivity implements OnClickListener{
         if(result){
             System.out.println("Cerrar Sesion");
             mauth.logOut();
+
         }
 
         contrasena.addTextChangedListener(new TextWatcher() {
@@ -107,8 +108,6 @@ public class MainActivity extends AppCompatActivity implements OnClickListener{
             }
         });
 
-
-
     }
 
     public void verIdiomas(){
@@ -147,11 +146,7 @@ public class MainActivity extends AppCompatActivity implements OnClickListener{
     @Override
     protected void onStart() {
         super.onStart();
-
-
     }
-
-
 
     private void setLocale(String lang) {
         Log.e("own", "onCreate: "+lang );

@@ -9,9 +9,6 @@
                     <padding android:right="10dp"/>
                 </shape>
             </item>
-            <item>
-                <bitmap android:gravity="center|end" android:src="@drawable/ic_flechas_dobles_hacia_la_derecha_de_avance_rapido"/>
-            </item>
         </layer-list>
     </item>
 </selector>

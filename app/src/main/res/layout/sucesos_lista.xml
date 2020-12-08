@@ -49,7 +49,7 @@
             android:id="@+id/imageView"
             android:layout_width="50dp"
             android:layout_height="70dp"
-            android:src="@drawable/user" />
+            android:src="@drawable/ic_imagen_de_usuario_con_fondo_negro" />
 
     </LinearLayout>
    

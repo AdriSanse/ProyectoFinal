@@ -1,6 +1,8 @@
 package com.example.proyectofinal.ui.Compartir;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.net.Uri;
 import android.os.Bundle;
 
@@ -25,6 +27,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
+import static android.content.Context.MODE_PRIVATE;
+
 
 public class CompartirAppFragment extends Fragment implements View.OnClickListener{
 
@@ -40,6 +44,7 @@ public class CompartirAppFragment extends Fragment implements View.OnClickListen
         mView = inflater.inflate(R.layout.fragment_compartir_app, container, false);
         btnCompartir = mView.findViewById(R.id.btnCompartirApp);
         btnCompartir.setOnClickListener(this);
+        guardarLocale();
         return mView;
     }
 
@@ -84,6 +89,21 @@ public class CompartirAppFragment extends Fragment implements View.OnClickListen
                         }
                     }
                 });
+    }
+    private void setLocale(String lang) {
+        Locale locale = new Locale(lang);
+        Locale.setDefault(locale);
+        Configuration config = new Configuration();
+        getContext().getResources().updateConfiguration(config, getContext().getResources().getDisplayMetrics());
+        //guardar datos de preferencia
+        SharedPreferences.Editor editor = getContext().getSharedPreferences("Ajustes",MODE_PRIVATE).edit();
+        editor.putString("idioma", lang);
+        editor.apply();
+    }
+    public void guardarLocale (){
+        SharedPreferences preferences = getContext().getSharedPreferences("Ajustes", MODE_PRIVATE);
+        String idioma = preferences.getString("idioma", "");
+        setLocale(idioma);
     }
     @Override
     public void onClick(View view) {

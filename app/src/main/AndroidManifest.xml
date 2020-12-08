@@ -9,7 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.ProyectoFinal">
-        <activity android:name=".ui.SplashScreenActivity">
+        <activity android:name=".SplashScreenActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -24,8 +24,7 @@
             android:parentActivityName=".PaginaPrincipal_Activity"
             android:theme="@style/Theme.ProyectoFinal.NoActionBar" />
         <activity
-            android:name=".ui.Ajustes.CambiarRecuperarContrasena_Activity"
-            android:parentActivityName=".PaginaPrincipal_Activity" />
+            android:name=".ui.Ajustes.CambiarRecuperarContrasena_Activity" />
         <activity
             android:name=".RecuperarContrasena_Activity"
             android:parentActivityName=".MainActivity" />

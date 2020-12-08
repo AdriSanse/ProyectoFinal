@@ -47,8 +47,6 @@ public class AjustesFragment extends Fragment implements View.OnClickListener{
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-
-
         mView = inflater.inflate(R.layout.fragment_ajustes, container, false);
         mAuth = new Autentificacion();
         cerrarSesion = mView.findViewById(R.id.cerrarSesionAjustes);

@@ -154,8 +154,9 @@
             android:id="@+id/textFechaSuceso"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:editable="false"
+            android:clickable="false"
             android:hint="@string/fecha"
+            android:inputType="date"
             android:singleLine="true"
             android:textColor="#FFFFFF" />
     </com.google.android.material.textfield.TextInputLayout>

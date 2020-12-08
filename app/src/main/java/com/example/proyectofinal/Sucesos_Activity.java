@@ -1,6 +1,8 @@
 package com.example.proyectofinal;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.os.Bundle;
 
 import com.example.proyectofinal.Adaptador.AdaptadorSucesos;
@@ -21,6 +23,7 @@ import android.view.MenuItem;
 import android.view.View;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class Sucesos_Activity extends AppCompatActivity {
 
@@ -37,6 +40,7 @@ public class Sucesos_Activity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle(getString(R.string.title_activity_sucesos_));
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        guardarLocale();
 
         db = FirebaseFirestore.getInstance();
 
@@ -62,6 +66,23 @@ public class Sucesos_Activity extends AppCompatActivity {
         super.onBackPressed();
         finish();
     }
+
+    private void setLocale(String lang) {
+        Locale locale = new Locale(lang);
+        Locale.setDefault(locale);
+        Configuration config = new Configuration();
+        getBaseContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
+        //guardar datos de preferencia
+        SharedPreferences.Editor editor = getSharedPreferences("Ajustes",MODE_PRIVATE).edit();
+        editor.putString("idioma", lang);
+        editor.apply();
+    }
+    public void guardarLocale (){
+        SharedPreferences preferences = getSharedPreferences("Ajustes", MODE_PRIVATE);
+        String idioma = preferences.getString("idioma", "");
+        setLocale(idioma);
+    }
+
 
     public void cargarAdaptador(){
         Query query = db.collection("Salas").document(id).collection("Sucesos");

@@ -74,12 +74,12 @@ public class BorrarSala_Activity extends AppCompatActivity implements View.OnCli
         getBaseContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
         //guardar datos de preferencia
         SharedPreferences.Editor editor = getSharedPreferences("Ajustes",MODE_PRIVATE).edit();
-        editor.putString("Mi idioma", lang);
+        editor.putString("idioma", lang);
         editor.apply();
     }
     public void guardarLocale (){
         SharedPreferences preferences = getSharedPreferences("Ajustes", MODE_PRIVATE);
-        String idioma = preferences.getString("Mi idioma", "");
+        String idioma = preferences.getString("idioma", "");
         setLocale(idioma);
     }
 
@@ -145,7 +145,6 @@ public class BorrarSala_Activity extends AppCompatActivity implements View.OnCli
                                         @Override
                                         public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                                             if(task.isSuccessful()){
-                                                //Toast.makeText(BorrarSala_Activity.this, ""+task.getResult().get("grupo"), Toast.LENGTH_SHORT).show();
                                                 ArrayList<String> miGrupo = (ArrayList<String>) task.getResult().get("grupo");
                                                 for(String a: miGrupo){
                                                     if(a.equals(idUsuario)){

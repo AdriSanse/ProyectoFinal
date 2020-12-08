@@ -20,12 +20,6 @@ public class AdaptadorSucesos extends FirestoreRecyclerAdapter<Sucesos, Adaptado
 
     ArrayList<Sucesos> misSucesos;
 
-    /**
-     * Create a new RecyclerView adapter that listens to a Firestore Query.  See {@link
-     * FirestoreRecyclerOptions} for configuration options.
-     *
-     * @param options
-     */
     public AdaptadorSucesos(@NonNull FirestoreRecyclerOptions<Sucesos> options) {
         super(options);
     }

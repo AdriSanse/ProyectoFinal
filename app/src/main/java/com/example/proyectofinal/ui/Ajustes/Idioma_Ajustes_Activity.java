@@ -27,6 +27,7 @@ public class Idioma_Ajustes_Activity extends AppCompatActivity implements View.O
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_idioma__ajustes);
+        getSupportActionBar().setTitle(getString(R.string.idiomasTitulo));
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         guardarLocale();
         btnIdioma = findViewById(R.id.btnCambiarIdiomaAjustes);

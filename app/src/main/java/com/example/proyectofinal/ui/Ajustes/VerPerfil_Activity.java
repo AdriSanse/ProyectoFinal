@@ -30,19 +30,19 @@ import java.util.Locale;
 
 public class VerPerfil_Activity extends AppCompatActivity implements View.OnClickListener{
 
-    TextView textoUsuarioAjustes, textoCorreoAjustes, textoTelefonoAjustes;
-    TextInputLayout textoUsuarioLayoutAjustes, textoCorreoLayoutAjustes, textoTelefonoLayoutAjustes;
+    TextView textoUsuarioAjustes, textoTelefonoAjustes;
+    TextInputLayout textoUsuarioLayoutAjustes, textoTelefonoLayoutAjustes;
     Button btnGuardarCambiosAjustes;
     UsuariosProvider usersProvider;
     Autentificacion mAuth;
     String id ="";
-    String contrasena ="";
+    String correo ="";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ver_perfil);
-        getSupportActionBar().setTitle("Perfil");
+        getSupportActionBar().setTitle(getString(R.string.ver_perfil));
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         guardarLocale();
 
@@ -50,56 +50,55 @@ public class VerPerfil_Activity extends AppCompatActivity implements View.OnClic
         usersProvider = new UsuariosProvider();
 
         textoUsuarioAjustes = findViewById(R.id.textUserPerfilAjustes);
-        textoCorreoAjustes = findViewById(R.id.textCorreoPerfilAjustes);
         textoTelefonoAjustes = findViewById(R.id.textTelefonoPerfilAjustes);
 
-        textoUsuarioLayoutAjustes = findViewById(R.id.usuarioLayoutVerPerfil);
-        textoCorreoLayoutAjustes = findViewById(R.id.correoVerPerfilLayout);
-        textoTelefonoLayoutAjustes = findViewById(R.id.telefonoLayoutVerPerfil);
+        textoUsuarioLayoutAjustes = findViewById(R.id.usuarioLayoutVerPerfilAjustes);
+        textoTelefonoLayoutAjustes = findViewById(R.id.telefonoLayoutVerPerfilAjustes);
 
         btnGuardarCambiosAjustes = findViewById(R.id.btnGuardarCambiosPerfil);
         btnGuardarCambiosAjustes.setOnClickListener(this);
+
+        textoUsuarioAjustes.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                if(TextUtils.isEmpty(textoUsuarioAjustes.getText().toString())){
+                    textoUsuarioLayoutAjustes.setError(getString(R.string.nombreFallo));
+                }else{
+                    textoUsuarioLayoutAjustes.setError(null);
+                }
+            }
+        });
+        textoTelefonoAjustes.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                if(TextUtils.isEmpty(textoTelefonoAjustes.getText().toString())){
+                    textoTelefonoLayoutAjustes.setError(getString(R.string.telefonoFallo));
+                }else{
+                    textoTelefonoLayoutAjustes.setError(null);
+                }
+            }
+        });
         cargarDatosPerfilActivity();
-//        textoUsuarioAjustes.addTextChangedListener(new TextWatcher() {
-//            @Override
-//            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-//
-//            }
-//
-//            @Override
-//            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-//
-//            }
-//
-//            @Override
-//            public void afterTextChanged(Editable editable) {
-//                if(TextUtils.isEmpty(textoUsuarioAjustes.getText().toString())){
-//                    textoUsuarioLayoutAjustes.setError(getString(R.string.nombreFallo));
-//                }else{
-//                    textoUsuarioLayoutAjustes.setError(null);
-//                }
-//            }
-//        });
-//        textoTelefonoAjustes.addTextChangedListener(new TextWatcher() {
-//            @Override
-//            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-//
-//            }
-//
-//            @Override
-//            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-//
-//            }
-//
-//            @Override
-//            public void afterTextChanged(Editable editable) {
-//                if(TextUtils.isEmpty(textoTelefonoAjustes.getText().toString())){
-//                    textoTelefonoLayoutAjustes.setError(getString(R.string.telefonoFallo));
-//                }else{
-//                    textoTelefonoLayoutAjustes.setError(null);
-//                }
-//            }
-//        });
     }
 
     private void setLocale(String lang) {
@@ -109,12 +108,12 @@ public class VerPerfil_Activity extends AppCompatActivity implements View.OnClic
         getBaseContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
         //guardar datos de preferencia
         SharedPreferences.Editor editor = getSharedPreferences("Ajustes",MODE_PRIVATE).edit();
-        editor.putString("Mi idioma", lang);
+        editor.putString("idioma", lang);
         editor.apply();
     }
     public void guardarLocale (){
         SharedPreferences preferences =  getSharedPreferences("Ajustes", MODE_PRIVATE);
-        String idioma = preferences.getString("Mi idioma", "");
+        String idioma = preferences.getString("idioma", "");
         setLocale(idioma);
     }
 
@@ -124,7 +123,7 @@ public class VerPerfil_Activity extends AppCompatActivity implements View.OnClic
             public void onSuccess(DocumentSnapshot documentSnapshot) {
                 id=documentSnapshot.get("id").toString();
                 textoUsuarioAjustes.setText(documentSnapshot.get("nombre").toString());
-                textoCorreoAjustes.setText(documentSnapshot.get("email").toString());
+                correo = documentSnapshot.get("email").toString();
                 textoTelefonoAjustes.setText(documentSnapshot.get("telefono").toString());
             }
         }).addOnFailureListener(new OnFailureListener() {
@@ -153,7 +152,6 @@ public class VerPerfil_Activity extends AppCompatActivity implements View.OnClic
     public void guardarCambios(){
         String telefono = textoTelefonoAjustes.getText().toString();
         String usuario = textoUsuarioAjustes.getText().toString();
-        String correo = textoCorreoAjustes.getText().toString();
 
         if(TextUtils.isEmpty(usuario) || TextUtils.isEmpty(telefono)){
             if(TextUtils.isEmpty(usuario)){

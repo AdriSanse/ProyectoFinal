@@ -70,19 +70,18 @@ public class EleccionSala_Activity extends AppCompatActivity implements View.OnC
         getBaseContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
         //guardar datos de preferencia
         SharedPreferences.Editor editor = getSharedPreferences("Ajustes",MODE_PRIVATE).edit();
-        editor.putString("Mi idioma", lang);
+        editor.putString("idioma", lang);
         editor.apply();
     }
     public void guardarLocale (){
         SharedPreferences preferences = getSharedPreferences("Ajustes", MODE_PRIVATE);
-        String idioma = preferences.getString("Mi idioma", "");
+        String idioma = preferences.getString("idioma", "");
         setLocale(idioma);
     }
 
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-        Toast.makeText(this, "Btn home dado", Toast.LENGTH_SHORT).show();
     }
 
     public void cargarDatos(){
@@ -96,7 +95,6 @@ public class EleccionSala_Activity extends AppCompatActivity implements View.OnC
                     if(task.isSuccessful()){
                         Sala miSala = new Sala(task.getResult().get("id").toString(), task.getResult().get("nombreSala").toString());
                         salaAdapter.add(miSala);
-                        Toast.makeText(EleccionSala_Activity.this, ""+task.getResult().get("nombreSala"), Toast.LENGTH_SHORT).show();
                         salaAdapter.notifyDataSetChanged();
                     }
                 }
