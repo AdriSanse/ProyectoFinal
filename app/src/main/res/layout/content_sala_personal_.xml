@@ -44,7 +44,7 @@
         app:layout_constraintVertical_bias="0.125" />
 
     <RadioGroup
-        android:id="@+id/radioGroup"
+        android:id="@+id/radioGrupo"
         android:layout_width="251dp"
         android:layout_height="81dp"
         android:layout_marginStart="32dp"
@@ -87,7 +87,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/radioGroup"
+        app:layout_constraintTop_toBottomOf="@+id/radioGrupo"
         app:layout_constraintVertical_bias="0.0"
         app:startIconDrawable="@drawable/ic_correo_electronico"
         app:startIconTint="@color/white">

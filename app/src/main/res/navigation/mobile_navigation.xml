@@ -40,6 +40,6 @@
     <fragment
         android:id="@+id/compartirAppFragment"
         android:name="com.example.proyectofinal.ui.Compartir.CompartirAppFragment"
-        android:label="fragment_compartir_app"
+        android:label="@string/compartirApp"
         tools:layout="@layout/fragment_compartir_app" />
 </navigation>

@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Objects;
 
 public class Sala {
-    String id, nombreCreador, nombreSala, contrasena;
+    String id, nombreCreador, nombreSala;
     String dinero;
     List<String> grupo;
 
@@ -37,14 +37,6 @@ public class Sala {
 
     public void setNombreSala(String nombreSala) {
         this.nombreSala = nombreSala;
-    }
-
-    public String getContrasena() {
-        return contrasena;
-    }
-
-    public void setContrasena(String contrasena) {
-        this.contrasena = contrasena;
     }
 
     public String getDinero() {

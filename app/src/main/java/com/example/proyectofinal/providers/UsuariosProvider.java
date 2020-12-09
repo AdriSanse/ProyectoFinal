@@ -37,7 +37,6 @@ public class UsuariosProvider {
         Map<String, Object> usuarioActu = new HashMap<>();
         usuarioActu.put("id",user.getId());
         usuarioActu.put("nombre",user.getNombre());
-        usuarioActu.put("contrasena",user.getContrasena());
         usuarioActu.put("correo",user.getEmail());
         usuarioActu.put("telefono",user.getTelefono());
         return databaseUser.document(id).update(usuarioActu);

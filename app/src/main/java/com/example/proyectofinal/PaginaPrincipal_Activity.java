@@ -1,6 +1,7 @@
 package com.example.proyectofinal;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
@@ -97,6 +98,11 @@ public class PaginaPrincipal_Activity extends AppCompatActivity{
         mauth = new Autentificacion();
         usersProvider = new UsuariosProvider();
         db = FirebaseFirestore.getInstance();
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
     }
 
     private void setLocale(String lang) {

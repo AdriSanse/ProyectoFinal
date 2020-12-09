@@ -44,7 +44,6 @@
         android:background="@drawable/button_rounded"
         android:text="@string/cambioContra"
         android:textColor="#FFFFFF"
-        app:backgroundTint="@color/teal_700"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"

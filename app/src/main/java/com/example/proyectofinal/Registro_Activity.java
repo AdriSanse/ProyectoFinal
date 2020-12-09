@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -147,6 +148,17 @@ public class Registro_Activity extends AppCompatActivity implements View.OnClick
         });
     }
 
+    public boolean isEmailValid(TextInputLayout inputLayoutEmail) {
+        String email = inputLayoutEmail.getEditText().getText().toString().trim();
+        if (Patterns.EMAIL_ADDRESS.matcher(email).find()) {
+            inputLayoutEmail.setError(null);
+            return true;
+        } else {
+            inputLayoutEmail.setError(getString(R.string.emailFallo));
+            return false;
+        }
+    }
+
     private void setLocale(String lang) {
         Locale locale = new Locale(lang);
         Locale.setDefault(locale);
@@ -171,7 +183,7 @@ public class Registro_Activity extends AppCompatActivity implements View.OnClick
             String spass = contrasena.getText().toString();
             final String snombre = nombre.getText().toString();
             final String stelefono = telefono.getText().toString();
-            if(TextUtils.isEmpty(scorreo) || TextUtils.isEmpty(spass) || TextUtils.isEmpty(snombre) || TextUtils.isEmpty(stelefono)){
+            if(!isEmailValid(correoLayout) || TextUtils.isEmpty(spass) || TextUtils.isEmpty(snombre) || TextUtils.isEmpty(stelefono)){
                 Toast.makeText(this, "Debes rellenar todos los datos", Toast.LENGTH_SHORT).show();
                 if(TextUtils.isEmpty(scorreo)){
                     correoLayout.setError(getString(R.string.emailFallo));

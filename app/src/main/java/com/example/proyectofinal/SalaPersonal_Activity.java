@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -50,6 +51,7 @@ public class SalaPersonal_Activity extends AppCompatActivity implements View.OnC
     TextView textoCalendario, textoDinero, textoDineroCambio, textAsunto;
     String id = "", idUsuario = "", usuario = "", fecha = "", dineroSala = "";
     RadioButton radioGasto, radioIngreso;
+    RadioGroup grupoRadio;
     TextInputLayout dineroLayout, asuntoLayout, calendarioLayout;
     Calendar mCalendar;
     Autentificacion auth;
@@ -80,6 +82,7 @@ public class SalaPersonal_Activity extends AppCompatActivity implements View.OnC
         textAsunto = findViewById(R.id.textAsunto);
         radioIngreso = findViewById(R.id.radioIngreso);
         radioGasto = findViewById(R.id.radioGastos);
+        grupoRadio = findViewById(R.id.radioGrupo);
 
         dineroLayout = findViewById(R.id.dineroSalaPersonalLayout);
         asuntoLayout = findViewById(R.id.AsuntoLayout);
@@ -242,7 +245,7 @@ public class SalaPersonal_Activity extends AppCompatActivity implements View.OnC
         if(view.getId() == R.id.btnCrearSuceso){
             final String sAsunto = textAsunto.getText().toString();
 
-            if(TextUtils.isEmpty(sAsunto) || TextUtils.isEmpty(fecha) || TextUtils.isEmpty(textoDineroCambio.getText().toString())){
+            if(TextUtils.isEmpty(sAsunto) || TextUtils.isEmpty(textoCalendario.getText().toString()) || TextUtils.isEmpty(textoDineroCambio.getText().toString())){
                 if(TextUtils.isEmpty(sAsunto)){
                     asuntoLayout.setError(getString(R.string.asuntoFallo));
                 }
@@ -328,6 +331,7 @@ public class SalaPersonal_Activity extends AppCompatActivity implements View.OnC
                                                 public void onComplete(@NonNull Task<Void> task) {
                                                     if(task.isSuccessful()){
                                                         Toast.makeText(SalaPersonal_Activity.this, "Se actualizo el dinero de la sala", Toast.LENGTH_SHORT).show();
+
                                                     }
                                                 }
                                             });
@@ -341,9 +345,11 @@ public class SalaPersonal_Activity extends AppCompatActivity implements View.OnC
                     }
                 });
             }
+            grupoRadio.clearCheck();
             textAsunto.setText("");
             textoCalendario.setText("");
             textoDineroCambio.setText("");
+
         }
         if(view.getId()==R.id.btnInvitarGente){
             Intent miIntentoInvitar = new Intent(this, InvitarGente_Activity.class);

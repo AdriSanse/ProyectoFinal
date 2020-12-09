@@ -37,7 +37,6 @@ public class SalaProviders {
         usuarioActu.put("id",sala.getId());
         usuarioActu.put("nombreCreador",sala.getNombreCreador());
         usuarioActu.put("nombreSala",sala.getNombreSala());
-        usuarioActu.put("contrasena",sala.getContrasena());
         //usuarioActu.put("grupo",sala.getGrupo());
         usuarioActu.put("dinero",sala.getDinero());
         return databaseSala.document(id).update(usuarioActu);
