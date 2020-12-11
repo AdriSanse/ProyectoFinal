@@ -105,74 +105,78 @@ public class BorrarSala_Activity extends AppCompatActivity implements View.OnCli
     public void onClick(View view) {
         if(view.getId()==R.id.btnVerDatos){
             Sala miIdSala = (Sala) salasCombo.getSelectedItem();
-            db.collection("Salas").document(miIdSala.getId()).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                @Override
-                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                    if(task.isSuccessful()){
-                        Sala miSalaRemove = task.getResult().toObject(Sala.class);
-                        String creador1 = task.getResult().get("nombreCreador").toString();
-                        if(creador1.equals(idUsuario)) {
-                            AlertDialog.Builder builder = new AlertDialog.Builder(BorrarSala_Activity.this);
-                            builder.setMessage(getString(R.string.eresCreadorBorrarSala)).setPositiveButton(getString(R.string.aceptar), new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialogInterface, int i) {
-                                    db.collection("Salas").document(miIdSala.getId()).collection("Sucesos").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                                        @Override
-                                        public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                                            for(DocumentSnapshot a : task.getResult().getDocuments()){
-                                                a.getReference().delete();
+            if(salaAdapter.isEmpty()){
+                Toast.makeText(this, "No has seleccionado ninguna sala", Toast.LENGTH_SHORT).show();
+            }else {
+                db.collection("Salas").document(miIdSala.getId()).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                        if(task.isSuccessful()){
+                            Sala miSalaRemove = task.getResult().toObject(Sala.class);
+                            String creador1 = task.getResult().get("nombreCreador").toString();
+                            if(creador1.equals(idUsuario)) {
+                                AlertDialog.Builder builder = new AlertDialog.Builder(BorrarSala_Activity.this);
+                                builder.setMessage(getString(R.string.eresCreadorBorrarSala)).setPositiveButton(getString(R.string.aceptar), new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialogInterface, int i) {
+                                        db.collection("Salas").document(miIdSala.getId()).collection("Sucesos").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                                            @Override
+                                            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                                for(DocumentSnapshot a : task.getResult().getDocuments()){
+                                                    a.getReference().delete();
+                                                }
+                                                db.collection("Salas").document(miIdSala.getId()).delete();
+                                                Toast.makeText(BorrarSala_Activity.this, R.string.borroConExito, Toast.LENGTH_SHORT).show();
+                                                salaAdapter.remove(miSalaRemove);
+                                                salaAdapter.notifyDataSetChanged();
                                             }
-                                            db.collection("Salas").document(miIdSala.getId()).delete();
-                                            Toast.makeText(BorrarSala_Activity.this, R.string.borroConExito, Toast.LENGTH_SHORT).show();
-                                            salaAdapter.remove(miSalaRemove);
-                                            salaAdapter.notifyDataSetChanged();
-                                        }
-                                    });
-                                }
-                            }).setNegativeButton(getString(R.string.cancelar), new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialogInterface, int i) {
+                                        });
+                                    }
+                                }).setNegativeButton(getString(R.string.cancelar), new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialogInterface, int i) {
 
-                                }
-                            }).show();
-                        }
-                        if(!creador1.equals(idUsuario)){
-                            AlertDialog.Builder builder2 = new AlertDialog.Builder(BorrarSala_Activity.this);
-                            builder2.setMessage(getString(R.string.eresInvitado)).setPositiveButton(getString(R.string.aceptar), new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialogInterface, int i) {
-                                    salaProviders.getSala(miIdSala.getId()).addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                                        @Override
-                                        public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                                            if(task.isSuccessful()){
-                                                ArrayList<String> miGrupo = (ArrayList<String>) task.getResult().get("grupo");
-                                                for(String a: miGrupo){
-                                                    if(a.equals(idUsuario)){
-                                                        db.collection("Salas").document(miIdSala.getId()).update("grupo",FieldValue.arrayRemove(a)).addOnCompleteListener(new OnCompleteListener<Void>() {
-                                                            @Override
-                                                            public void onComplete(@NonNull Task<Void> task) {
-                                                                if(task.isSuccessful()){
-                                                                    salaAdapter.remove(miSalaRemove);
-                                                                    salaAdapter.notifyDataSetChanged();
+                                    }
+                                }).show();
+                            }
+                            if(!creador1.equals(idUsuario)){
+                                AlertDialog.Builder builder2 = new AlertDialog.Builder(BorrarSala_Activity.this);
+                                builder2.setMessage(getString(R.string.eresInvitado)).setPositiveButton(getString(R.string.aceptar), new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialogInterface, int i) {
+                                        salaProviders.getSala(miIdSala.getId()).addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                                            @Override
+                                            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                                                if(task.isSuccessful()){
+                                                    ArrayList<String> miGrupo = (ArrayList<String>) task.getResult().get("grupo");
+                                                    for(String a: miGrupo){
+                                                        if(a.equals(idUsuario)){
+                                                            db.collection("Salas").document(miIdSala.getId()).update("grupo",FieldValue.arrayRemove(a)).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                                @Override
+                                                                public void onComplete(@NonNull Task<Void> task) {
+                                                                    if(task.isSuccessful()){
+                                                                        salaAdapter.remove(miSalaRemove);
+                                                                        salaAdapter.notifyDataSetChanged();
+                                                                    }
                                                                 }
-                                                            }
-                                                        });
+                                                            });
+                                                        }
                                                     }
                                                 }
                                             }
-                                        }
-                                    });
-                                }
-                            }).setNegativeButton(getString(R.string.cancelar), new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialogInterface, int i) {
-                                    
-                                }
-                            }).show();
+                                        });
+                                    }
+                                }).setNegativeButton(getString(R.string.cancelar), new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialogInterface, int i) {
+
+                                    }
+                                }).show();
+                            }
                         }
                     }
-                }
-            });
+                });
+            }
         }
     }
 }

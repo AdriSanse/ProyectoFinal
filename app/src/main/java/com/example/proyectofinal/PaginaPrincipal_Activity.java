@@ -74,6 +74,9 @@ public class PaginaPrincipal_Activity extends AppCompatActivity{
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
+        Intent miIdSala = getIntent();
+        String idSala = (String) miIdSala.getSerializableExtra("idSalaUnirse");
+        Toast.makeText(this, ""+idSala, Toast.LENGTH_SHORT).show();
 //        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
 //            @Override
 //            public boolean onNavigationItemSelected(@NonNull MenuItem item) {

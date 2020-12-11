@@ -60,6 +60,9 @@ public class MainActivity extends AppCompatActivity implements OnClickListener{
         btnLogin.setOnClickListener(this);
         correo.setText("adrian15sanse@gmail.com");
         contrasena.setText("123123");
+        Intent miIdSala = getIntent();
+        String idSala = (String) miIdSala.getSerializableExtra("idSalaUnirse");
+        Toast.makeText(this, ""+idSala, Toast.LENGTH_SHORT).show();
         boolean result = getIntent().getBooleanExtra("cerrarSesion",false);
         if(result){
             System.out.println("Cerrar Sesion");
@@ -195,6 +198,7 @@ public class MainActivity extends AppCompatActivity implements OnClickListener{
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if(task.isSuccessful()){
                         Intent miIntentoLogin = new Intent(MainActivity.this,PaginaPrincipal_Activity.class);
+                        miIntentoLogin.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                         startActivity(miIntentoLogin);
                     }else{
                         Toast.makeText(MainActivity.this, "No pusistes bien los datos", Toast.LENGTH_SHORT).show();

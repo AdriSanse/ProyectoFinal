@@ -1,5 +1,7 @@
 package com.example.proyectofinal.Objects;
 
+import com.google.firebase.firestore.Exclude;
+
 public class User {
     String id;
     String nombre;
@@ -35,6 +37,7 @@ public class User {
         this.nombre = nombre;
     }
 
+    @Exclude
     public String getContrasena() {
         return contrasena;
     }

@@ -1,5 +1,6 @@
 package com.example.proyectofinal.Adaptador;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,9 +20,12 @@ import java.util.ArrayList;
 public class AdaptadorSucesos extends FirestoreRecyclerAdapter<Sucesos, AdaptadorSucesos.ViewHolderSucesos> {
 
     ArrayList<Sucesos> misSucesos;
+    private Context miContexto;
 
-    public AdaptadorSucesos(@NonNull FirestoreRecyclerOptions<Sucesos> options) {
+    public AdaptadorSucesos(@NonNull FirestoreRecyclerOptions<Sucesos> options, Context miContexto) {
+
         super(options);
+        this.miContexto = miContexto;
     }
 
     @NonNull
@@ -35,7 +39,7 @@ public class AdaptadorSucesos extends FirestoreRecyclerAdapter<Sucesos, Adaptado
     @Override
     protected void onBindViewHolder(@NonNull ViewHolderSucesos holder, int position, @NonNull Sucesos suceso) {
 
-        holder.asuntoTxt.setText("El asunto fue "+suceso.getAsunto()+" el dia "+suceso.getFecha()+" con un "+suceso.getGastoIngreso()+" de "+suceso.getDinero()+"€");
+        holder.asuntoTxt.setText(miContexto.getString(R.string.elAsuntofue)+" "+suceso.getAsunto()+" "+miContexto.getString(R.string.elDiaDe)+" "+suceso.getFecha()+" "+miContexto.getString(R.string.conUn)+" "+suceso.getGastoIngreso()+" "+miContexto.getString(R.string.de)+" "+suceso.getDinero()+"€");
         holder.nombreTxt.setText(suceso.getUsuario());
     }
 

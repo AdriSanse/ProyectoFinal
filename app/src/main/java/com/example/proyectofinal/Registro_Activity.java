@@ -185,7 +185,7 @@ public class Registro_Activity extends AppCompatActivity implements View.OnClick
             final String stelefono = telefono.getText().toString();
             if(!isEmailValid(correoLayout) || TextUtils.isEmpty(spass) || TextUtils.isEmpty(snombre) || TextUtils.isEmpty(stelefono)){
                 Toast.makeText(this, "Debes rellenar todos los datos", Toast.LENGTH_SHORT).show();
-                if(TextUtils.isEmpty(scorreo)){
+                if(!isEmailValid(correoLayout)){
                     correoLayout.setError(getString(R.string.emailFallo));
                 }
                 if(TextUtils.isEmpty(spass)){

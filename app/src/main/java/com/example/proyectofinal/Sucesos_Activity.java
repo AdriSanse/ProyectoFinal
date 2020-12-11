@@ -89,7 +89,7 @@ public class Sucesos_Activity extends AppCompatActivity {
         FirestoreRecyclerOptions<Sucesos> firestoreSucesos = new FirestoreRecyclerOptions.Builder<Sucesos>()
                 .setQuery(query, Sucesos.class).build();
 
-        adaptador = new AdaptadorSucesos(firestoreSucesos);
+        adaptador = new AdaptadorSucesos(firestoreSucesos, this);
         miLista.setAdapter(adaptador);
         adaptador.startListening();
 
