@@ -48,7 +48,7 @@ public class SplashScreenActivity extends AppCompatActivity {
                             deepLink = pendingDynamicLinkData.getLink();
                             if (deepLink.getQueryParameter("idSala") != null) {
                                 String id = deepLink.getQueryParameter("idSala");
-                                Intent intent=new Intent(SplashScreenActivity.this,MainActivity.class);
+                                Intent intent=new Intent(SplashScreenActivity.this,PaginaPrincipal_Activity.class);
                                 intent.putExtra("idSalaUnirse",id);
                                 System.out.println(id);
                                 startActivity(intent);

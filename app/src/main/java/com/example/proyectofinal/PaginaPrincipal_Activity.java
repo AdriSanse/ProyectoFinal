@@ -22,6 +22,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
@@ -74,8 +75,17 @@ public class PaginaPrincipal_Activity extends AppCompatActivity{
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
-        Intent miIdSala = getIntent();
-        String idSala = (String) miIdSala.getSerializableExtra("idSalaUnirse");
+
+
+
+        String idSala = getIntent().getStringExtra("idSalaUnirse");
+        if(idSala!=null){
+           Intent i=new Intent(this,Unirse_Sala_Activity.class);
+           i.putExtra("idLobbyToJoin",idSala);
+           startActivity(i);
+        }
+
+
         Toast.makeText(this, ""+idSala, Toast.LENGTH_SHORT).show();
 //        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
 //            @Override

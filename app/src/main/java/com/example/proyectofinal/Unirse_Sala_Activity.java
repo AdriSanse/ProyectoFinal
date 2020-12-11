@@ -12,6 +12,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputLayout;
@@ -31,6 +32,7 @@ import androidx.appcompat.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -49,6 +51,7 @@ public class Unirse_Sala_Activity extends AppCompatActivity implements View.OnCl
     UsuariosProvider usersProvider;
     FirebaseFirestore db;
     Autentificacion mAuth;
+    private String idLobbyToJoin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +62,59 @@ public class Unirse_Sala_Activity extends AppCompatActivity implements View.OnCl
         guardarLocale();
         getSupportActionBar().setTitle(getString(R.string.title_activity_unirse__sala_));
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        ///
+        idLobbyToJoin=getIntent().getStringExtra("idLobbyToJoin");
+        if(idLobbyToJoin!=null){
+
+            FirebaseFirestore.getInstance().collection("Salas").document(idLobbyToJoin).get()
+                    .addOnSuccessListener(v->{
+                        if(v.exists()){
+                            final String nameLobby=v.getString("nombreSala");
+                            FirebaseFirestore.getInstance().collection("User").document(v.getString("nombreCreador"))
+                                    .get().addOnSuccessListener(vv->{
+                                if(vv.exists()){
+                                    final String nameUser=vv.getString("nombre");
+                                   String message= nameUser+" le ha invitado a unirse a esta sala \""+nameLobby+"\". ¿Esta seguro que desea unirse? ";
+
+                                    new MaterialAlertDialogBuilder(this).setTitle("Confimacion")
+                                            .setMessage(message)
+                                            .setPositiveButton("Yes sure",(dialogInterface, i) -> {
+                                                CollectionReference busquedaId = db.collection("Salas");
+                                                Query query = busquedaId.whereEqualTo("id",idLobbyToJoin);
+                                                query.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                                                    @Override
+                                                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                                        if (task.isSuccessful()) {
+                                                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                                                DocumentReference washingtonRef = db.collection("Salas").document(document.getId());
+                                                                washingtonRef.update("grupo", FieldValue.arrayUnion(idUsuario)).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                                    @Override
+                                                                    public void onSuccess(Void aVoid) {
+                                                                        Toast.makeText(Unirse_Sala_Activity.this, "Se unio a la sala", Toast.LENGTH_SHORT).show();
+                                                                        dialogInterface.dismiss();
+                                                                    }
+                                                                });
+                                                            }
+                                                        } else {
+                                                            layoutUnirse.setError(getString(R.string.actualizar));
+                                                            return;
+                                                        }
+                                                    }
+                                                });
+                                            })
+                                            .setNegativeButton("No thanks",null)
+                                            .setCancelable(false)
+                                            .show();
+                                }
+                            }).addOnFailureListener(vv-> Log.e("own", "onCreate: "+vv.getMessage() ));
+                        }
+
+                    })
+                    .addOnFailureListener(v-> Log.e("own", "onCreate: "+v.getMessage()  ));
+
+        }
+
+
 
         salaProviders = new SalaProviders();
         usersProvider = new UsuariosProvider();
@@ -123,20 +179,20 @@ public class Unirse_Sala_Activity extends AppCompatActivity implements View.OnCl
                 query.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if(task.isSuccessful()){
-                            for (QueryDocumentSnapshot document : task.getResult()){
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
                                 DocumentReference washingtonRef = db.collection("Salas").document(document.getId());
                                 washingtonRef.update("grupo", FieldValue.arrayUnion(idUsuario)).addOnSuccessListener(new OnSuccessListener<Void>() {
                                     @Override
                                     public void onSuccess(Void aVoid) {
                                         Toast.makeText(Unirse_Sala_Activity.this, "Se unio a la sala", Toast.LENGTH_SHORT).show();
-                                        Intent miIntentoUnirse = new Intent(Unirse_Sala_Activity.this,SalaPersonal_Activity.class);
-                                        miIntentoUnirse.putExtra("id",textoUnirse.getText().toString());
+                                        Intent miIntentoUnirse = new Intent(Unirse_Sala_Activity.this, SalaPersonal_Activity.class);
+                                        miIntentoUnirse.putExtra("id", textoUnirse.getText().toString());
                                         startActivity(miIntentoUnirse);
                                     }
                                 });
                             }
-                        }else{
+                        } else {
                             layoutUnirse.setError(getString(R.string.actualizar));
                             return;
                         }
