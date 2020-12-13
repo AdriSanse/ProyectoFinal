@@ -131,7 +131,7 @@ public class GalleryFragment extends Fragment implements View.OnClickListener{
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                Toast.makeText(getActivity(), "Algo ha fallodo", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), getString(R.string.error), Toast.LENGTH_SHORT).show();
 
             }
         });
@@ -156,9 +156,7 @@ public class GalleryFragment extends Fragment implements View.OnClickListener{
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if (task.isSuccessful()) {
-                    Toast.makeText(getActivity(), "Se actualizo correcamente tu perfil", Toast.LENGTH_SHORT).show();
-                } else {
-                    Toast.makeText(getActivity(), "Fallo", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), getString(R.string.actualizarPerfil), Toast.LENGTH_SHORT).show();
                 }
             }
         });

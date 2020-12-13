@@ -32,7 +32,7 @@ import java.util.Locale;
 public class InvitarGente_Activity extends AppCompatActivity implements View.OnClickListener{
 
     TextView correo;
-    Button btnInvitarGente;
+    Button btnInvitarGente, btnLinkDinamico;
     String idSala="", idUsuario="";
     Autentificacion mAuth;
     @Override
@@ -49,6 +49,9 @@ public class InvitarGente_Activity extends AppCompatActivity implements View.OnC
         mAuth = new Autentificacion();
 
         correo = findViewById(R.id.textCorreoInvitarGente);
+
+        btnLinkDinamico = findViewById(R.id.btnInvitarMedianteEnlace);
+        btnLinkDinamico.setOnClickListener(this);
         btnInvitarGente = findViewById(R.id.btnInvitarGenteInvitar);
         btnInvitarGente.setOnClickListener(this);
 
@@ -109,7 +112,6 @@ public class InvitarGente_Activity extends AppCompatActivity implements View.OnC
     }
 
     public void generateDynamicLink() {
-        String currentTime = new SimpleDateFormat("HH:mm:ss", Locale.getDefault()).format(new Date());
 
         Task<ShortDynamicLink> dynamicLink = FirebaseDynamicLinks.getInstance().createDynamicLink()
                 .setLink(Uri.parse("https://proyectofinalgrado.page.link?idSala=" + idSala))
@@ -126,7 +128,7 @@ public class InvitarGente_Activity extends AppCompatActivity implements View.OnC
                 .setSocialMetaTagParameters(
                         new DynamicLink.SocialMetaTagParameters.Builder()
                                 .setTitle("PROYECTO FIN DE GRADO")
-                                .setDescription("CURRENT TIME")
+                                .setDescription(getString(R.string.invitacionTexto))
                                 .setImageUrl(Uri.parse("https://www.android.com/static/images/logos/andy-lg.png"))
                                 .build())
                 .buildShortDynamicLink()
@@ -139,13 +141,13 @@ public class InvitarGente_Activity extends AppCompatActivity implements View.OnC
                             Uri flowchartLink = task.getResult().getPreviewLink();
                             Intent sendIntent = new Intent();
                             sendIntent.setAction(Intent.ACTION_SEND);
-                            sendIntent.putExtra(Intent.EXTRA_TEXT, "Share current time" + ": " + shortLink.toString());
+                            sendIntent.putExtra(Intent.EXTRA_TEXT, getString(R.string.invitacionTexto) + ": " + shortLink.toString());
                             sendIntent.setType("text/plain");
 
                             Intent shareIntent = Intent.createChooser(sendIntent, null);
                             startActivity(shareIntent);
                         } else {
-                            Toast.makeText(InvitarGente_Activity.this, "ERROR", Toast.LENGTH_LONG).show();
+                            Toast.makeText(InvitarGente_Activity.this, getString(R.string.error), Toast.LENGTH_LONG).show();
                         }
                     }
                 });
@@ -154,7 +156,9 @@ public class InvitarGente_Activity extends AppCompatActivity implements View.OnC
     @Override
     public void onClick(View view) {
         if(view.getId()==R.id.btnInvitarGenteInvitar){
-//            sendEmail();
+            sendEmail();
+        }
+        if(view.getId()==R.id.btnInvitarMedianteEnlace){
             generateDynamicLink();
         }
     }

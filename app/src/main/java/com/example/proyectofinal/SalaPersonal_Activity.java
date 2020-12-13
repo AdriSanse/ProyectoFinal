@@ -246,6 +246,7 @@ public class SalaPersonal_Activity extends AppCompatActivity implements View.OnC
             final String sAsunto = textAsunto.getText().toString();
 
             if(TextUtils.isEmpty(sAsunto) || TextUtils.isEmpty(textoCalendario.getText().toString()) || TextUtils.isEmpty(textoDineroCambio.getText().toString())){
+                Toast.makeText(this, getString(R.string.datosObligatorios) , Toast.LENGTH_SHORT).show();
                 if(TextUtils.isEmpty(sAsunto)){
                     asuntoLayout.setError(getString(R.string.asuntoFallo));
                 }
@@ -287,12 +288,12 @@ public class SalaPersonal_Activity extends AppCompatActivity implements View.OnC
                                                 @Override
                                                 public void onComplete(@NonNull Task<Void> task) {
                                                     if(task.isSuccessful()){
-                                                        Toast.makeText(SalaPersonal_Activity.this, "Se actualizo el dinero de la sala", Toast.LENGTH_SHORT).show();
+                                                        Toast.makeText(SalaPersonal_Activity.this, getString(R.string.actualizacionDinero), Toast.LENGTH_SHORT).show();
                                                     }
                                                 }
                                             });
                                         }else{
-                                            Toast.makeText(SalaPersonal_Activity.this, "No funciono la creacion", Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(SalaPersonal_Activity.this, getString(R.string.error), Toast.LENGTH_SHORT).show();
                                         }
                                     }
                                 });
@@ -330,13 +331,12 @@ public class SalaPersonal_Activity extends AppCompatActivity implements View.OnC
                                                 @Override
                                                 public void onComplete(@NonNull Task<Void> task) {
                                                     if(task.isSuccessful()){
-                                                        Toast.makeText(SalaPersonal_Activity.this, "Se actualizo el dinero de la sala", Toast.LENGTH_SHORT).show();
-
+                                                        Toast.makeText(SalaPersonal_Activity.this, getString(R.string.actualizacionDinero), Toast.LENGTH_SHORT).show();
                                                     }
                                                 }
                                             });
                                         }else{
-                                            Toast.makeText(SalaPersonal_Activity.this, "No funciono la creacion", Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(SalaPersonal_Activity.this, getString(R.string.error), Toast.LENGTH_SHORT).show();
                                         }
                                     }
                                 });

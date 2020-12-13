@@ -49,7 +49,6 @@ public class CompartirAppFragment extends Fragment implements View.OnClickListen
     }
 
     public void generateDynamicLink() {
-        String currentTime = new SimpleDateFormat("HH:mm:ss", Locale.getDefault()).format(new Date());
 
         Task<ShortDynamicLink> dynamicLink = FirebaseDynamicLinks.getInstance().createDynamicLink()
                 .setLink(Uri.parse("https://proyectofinalgrado.page.link"))
@@ -66,7 +65,7 @@ public class CompartirAppFragment extends Fragment implements View.OnClickListen
                 .setSocialMetaTagParameters(
                         new DynamicLink.SocialMetaTagParameters.Builder()
                                 .setTitle("PROYECTO FIN DE GRADO")
-                                .setDescription("CURRENT TIME")
+                                .setDescription(getString(R.string.descargateLaApp))
                                 .setImageUrl(Uri.parse("https://www.android.com/static/images/logos/andy-lg.png"))
                                 .build())
                 .buildShortDynamicLink()
@@ -79,13 +78,13 @@ public class CompartirAppFragment extends Fragment implements View.OnClickListen
                             Uri flowchartLink = task.getResult().getPreviewLink();
                             Intent sendIntent = new Intent();
                             sendIntent.setAction(Intent.ACTION_SEND);
-                            sendIntent.putExtra(Intent.EXTRA_TEXT, "Share current time" + ": " + shortLink.toString());
+                            sendIntent.putExtra(Intent.EXTRA_TEXT, getString(R.string.descargateLaApp) + ": " + shortLink.toString());
                             sendIntent.setType("text/plain");
 
                             Intent shareIntent = Intent.createChooser(sendIntent, null);
                             startActivity(shareIntent);
                         } else {
-                            Toast.makeText(getActivity(), "ERROR", Toast.LENGTH_LONG).show();
+                            Toast.makeText(getActivity(), getString(R.string.error), Toast.LENGTH_LONG).show();
                         }
                     }
                 });

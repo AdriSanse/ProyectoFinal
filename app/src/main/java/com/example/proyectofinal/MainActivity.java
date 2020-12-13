@@ -201,7 +201,7 @@ public class MainActivity extends AppCompatActivity implements OnClickListener{
                         miIntentoLogin.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                         startActivity(miIntentoLogin);
                     }else{
-                        Toast.makeText(MainActivity.this, "No pusistes bien los datos", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MainActivity.this, getString(R.string.error), Toast.LENGTH_SHORT).show();
                     }
                 }
             });

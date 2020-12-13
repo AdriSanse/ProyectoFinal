@@ -114,7 +114,7 @@ public class CambiarRecuperarContrasena_Activity extends AppCompatActivity imple
         if(view.getId()==R.id.btnRecuperacion2){
             correoC = correoCambio.getText().toString();
             if(!correoC.isEmpty()){
-                progressDialog.setMessage("Espere un momento, compruebe su bandeja de entrada...");
+                progressDialog.setMessage(getString(R.string.cambioContrasenaEspera));
                 progressDialog.setCanceledOnTouchOutside(false);
                 progressDialog.show();
                 cambioPass();

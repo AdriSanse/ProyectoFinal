@@ -107,7 +107,7 @@ public class EleccionSala_Activity extends AppCompatActivity implements View.OnC
         Sala miIdSala = (Sala) salasCombo.getSelectedItem();
         if(R.id.btnActividadSala==view.getId()){
             if(salaAdapter.isEmpty()){
-                Toast.makeText(this, "No hay ninguna sala seleccionada", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, getString(R.string.noSeleccionastes), Toast.LENGTH_SHORT).show();
             }else {
                 Intent miIntentoSucesos = new Intent(this, Sucesos_Activity.class);
                 miIntentoSucesos.putExtra("id",miIdSala.getId());
@@ -117,7 +117,7 @@ public class EleccionSala_Activity extends AppCompatActivity implements View.OnC
         }
         if(R.id.btnActualizarDinero==view.getId()){
             if(salaAdapter.isEmpty()){
-                Toast.makeText(this, "No hay ninguna sala seleccionada", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, getString(R.string.noSeleccionastes), Toast.LENGTH_SHORT).show();
             }else{
                 Intent miIntentoSala = new Intent(this, SalaPersonal_Activity.class);
                 miIntentoSala.putExtra("id",miIdSala.getId());

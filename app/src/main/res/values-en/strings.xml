@@ -71,6 +71,17 @@
     <string name="conUn">with a</string>
     <string name="de">the</string>
 
+    <string name="compartirMedianteEnlace">If you want to invite via link, click on this button:</string>
+    <string name="invitacionTexto">This link is to join my personal room</string>
+    <string name="noSeleccionastes">You have not selected any room</string>
+    <string name="datosObligatorios">You did not put the mandatory data</string>
+    <string name="actualizacionDinero">Room money was updated</string>
+    <string name="actualizarPerfil">Profile was updated</string>
+    <string name="invitacionDialog1">has invited you to join this room </string>
+    <string name="invitacionDialog2">. Are you sure you want to join?</string>
+    <string name="descargateLaApp">Download the app from this link</string>
+    <string name="error">ERROR!</string>
+
     <string name="ayudaEscrita">Welcome to the application to create rooms where you can keep track of money determined by the room leader.</string>
     <string name="ayudaEscrita1">1st Click on the Create Room button if you want to be the leader of the Room </string>
     <string name="ayudaEscrita2">2nd Once there you can give it a name, so that you can later know which room to enter and the money with which you want to create the room</string>

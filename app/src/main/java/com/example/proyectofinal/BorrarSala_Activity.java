@@ -106,7 +106,7 @@ public class BorrarSala_Activity extends AppCompatActivity implements View.OnCli
         if(view.getId()==R.id.btnVerDatos){
             Sala miIdSala = (Sala) salasCombo.getSelectedItem();
             if(salaAdapter.isEmpty()){
-                Toast.makeText(this, "No has seleccionado ninguna sala", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, getString(R.string.noSeleccionastes), Toast.LENGTH_SHORT).show();
             }else {
                 db.collection("Salas").document(miIdSala.getId()).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                     @Override
@@ -155,6 +155,7 @@ public class BorrarSala_Activity extends AppCompatActivity implements View.OnCli
                                                                 @Override
                                                                 public void onComplete(@NonNull Task<Void> task) {
                                                                     if(task.isSuccessful()){
+                                                                        Toast.makeText(BorrarSala_Activity.this, R.string.borroConExito, Toast.LENGTH_SHORT).show();
                                                                         salaAdapter.remove(miSalaRemove);
                                                                         salaAdapter.notifyDataSetChanged();
                                                                     }

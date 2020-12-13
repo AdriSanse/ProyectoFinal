@@ -71,6 +71,17 @@
     <string name="conUn">avec un</string>
     <string name="de">de</string>
 
+    <string name="compartirMedianteEnlace">Si vous souhaitez inviter en cliquant sur ce bouton:</string>
+    <string name="invitacionTexto">Ce lien est pour rejoindre ma salle personnelle</string>
+    <string name="noSeleccionastes">Vous n\'avez sélectionné aucune chambre</string>
+    <string name="datosObligatorios">Vous n\'avez pas mis les données obligatoires</string>
+    <string name="actualizacionDinero">L\'argent de la chambre a été mis à jour</string>
+    <string name="actualizarPerfil">Le profil a été mis à jour</string>
+    <string name="invitacionDialog1">vous a invité à rejoindre cette salle </string>
+    <string name="invitacionDialog2">. Êtes-vous sûr de vouloir rejoindre?</string>
+    <string name="descargateLaApp">Téléchargez l\'application à partir de ce lien</string>
+    <string name="error">ERROR!</string>
+
     <string name="ayudaEscrita">Bienvenue dans l\'application pour créer des salles dans lesquelles vous pouvez garder une trace de l\'argent déterminé par le chef de la salle.</string>
     <string name="ayudaEscrita1">1º Cliquez sur le bouton Créer une salle si vous voulez être le leader de la salle.</string>
     <string name="ayudaEscrita2">2ª Une fois sur place, vous pouvez mettre un nom, afin de savoir plus tard dans quelle pièce entrer et l\'argent avec lequel vous voulez créer la pièce.</string>

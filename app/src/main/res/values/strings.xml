@@ -70,6 +70,17 @@
     <string name="conUn">con un</string>
     <string name="de">de</string>
 
+    <string name="compartirMedianteEnlace">Si desea invitar mediante enlacepulse este boton:</string>
+    <string name="invitacionTexto">Este enlace es para unirte a mi sala personal</string>
+    <string name="noSeleccionastes">No has seleccionado ninguna sala</string>
+    <string name="datosObligatorios">No pusistes los datos obligatorios</string>
+    <string name="actualizacionDinero">Se actualizo el dinero de la sala</string>
+    <string name="actualizarPerfil">Se actualizo el perfil</string>
+    <string name="invitacionDialog1">le ha invitado a unirse a esta sala </string>
+    <string name="invitacionDialog2">. ¿Esta seguro que desea unirse?</string>
+    <string name="descargateLaApp">Descargate la app desde este enlace</string>
+    <string name="error">ERROR!</string>
+
     <string name="ayudaEscrita">Bienvenido a la aplicacion para crear Salas en las que podras llevar un control de un dinero que determine el lider de la sala.</string>
     <string name="ayudaEscrita1">1ª Pulse sobre el boton de Crear Sala si desea ser el lider de la Sala</string>
     <string name="ayudaEscrita2">2ª Una vez hay podra ponerle un nombre, para luego poder saber en que sala entrar y el dinero con el que desea crear la sala.</string>

@@ -129,7 +129,7 @@ public class VerPerfil_Activity extends AppCompatActivity implements View.OnClic
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                Toast.makeText(VerPerfil_Activity.this, "Algo ha fallodo", Toast.LENGTH_SHORT).show();
+                Toast.makeText(VerPerfil_Activity.this, getString(R.string.error), Toast.LENGTH_SHORT).show();
 
             }
         });
@@ -168,9 +168,9 @@ public class VerPerfil_Activity extends AppCompatActivity implements View.OnClic
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if (task.isSuccessful()) {
-                    Toast.makeText(VerPerfil_Activity.this, "Se actualizo correcamente tu perfil", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(VerPerfil_Activity.this, getString(R.string.actualizarPerfil), Toast.LENGTH_SHORT).show();
                 } else {
-                    Toast.makeText(VerPerfil_Activity.this, "Fallo", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(VerPerfil_Activity.this, getString(R.string.error), Toast.LENGTH_SHORT).show();
                 }
             }
         });

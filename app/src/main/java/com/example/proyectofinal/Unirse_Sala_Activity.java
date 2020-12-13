@@ -74,11 +74,11 @@ public class Unirse_Sala_Activity extends AppCompatActivity implements View.OnCl
                                     .get().addOnSuccessListener(vv->{
                                 if(vv.exists()){
                                     final String nameUser=vv.getString("nombre");
-                                   String message= nameUser+" le ha invitado a unirse a esta sala \""+nameLobby+"\". ¿Esta seguro que desea unirse? ";
+                                   String message= nameUser+ getString(R.string.invitacionDialog1)+"\""+nameLobby+"\""+getString(R.string.invitacionDialog2);
 
                                     new MaterialAlertDialogBuilder(this).setTitle("Confimacion")
                                             .setMessage(message)
-                                            .setPositiveButton("Yes sure",(dialogInterface, i) -> {
+                                            .setPositiveButton(getString(R.string.aceptar),(dialogInterface, i) -> {
                                                 CollectionReference busquedaId = db.collection("Salas");
                                                 Query query = busquedaId.whereEqualTo("id",idLobbyToJoin);
                                                 query.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -90,8 +90,10 @@ public class Unirse_Sala_Activity extends AppCompatActivity implements View.OnCl
                                                                 washingtonRef.update("grupo", FieldValue.arrayUnion(idUsuario)).addOnSuccessListener(new OnSuccessListener<Void>() {
                                                                     @Override
                                                                     public void onSuccess(Void aVoid) {
-                                                                        Toast.makeText(Unirse_Sala_Activity.this, "Se unio a la sala", Toast.LENGTH_SHORT).show();
                                                                         dialogInterface.dismiss();
+                                                                        Intent miCambioSala = new Intent(Unirse_Sala_Activity.this,SalaPersonal_Activity.class);
+                                                                        miCambioSala.putExtra("id", idLobbyToJoin);
+                                                                        startActivity(miCambioSala);
                                                                     }
                                                                 });
                                                             }
@@ -102,7 +104,7 @@ public class Unirse_Sala_Activity extends AppCompatActivity implements View.OnCl
                                                     }
                                                 });
                                             })
-                                            .setNegativeButton("No thanks",null)
+                                            .setNegativeButton(getString(R.string.cancelar),null)
                                             .setCancelable(false)
                                             .show();
                                 }
@@ -123,7 +125,6 @@ public class Unirse_Sala_Activity extends AppCompatActivity implements View.OnCl
 
         layoutUnirse = findViewById(R.id.unirseSalaPersonalLayout);
         textoUnirse = findViewById(R.id.unirseSalaPersonal);
-        //textoUnirse.setText("biv1gNVi3LTK2JnttR5R");
 
         btnUnirse = findViewById(R.id.btnUnirseSala);
         btnUnirse.setOnClickListener(this);
@@ -185,7 +186,6 @@ public class Unirse_Sala_Activity extends AppCompatActivity implements View.OnCl
                                 washingtonRef.update("grupo", FieldValue.arrayUnion(idUsuario)).addOnSuccessListener(new OnSuccessListener<Void>() {
                                     @Override
                                     public void onSuccess(Void aVoid) {
-                                        Toast.makeText(Unirse_Sala_Activity.this, "Se unio a la sala", Toast.LENGTH_SHORT).show();
                                         Intent miIntentoUnirse = new Intent(Unirse_Sala_Activity.this, SalaPersonal_Activity.class);
                                         miIntentoUnirse.putExtra("id", textoUnirse.getText().toString());
                                         startActivity(miIntentoUnirse);

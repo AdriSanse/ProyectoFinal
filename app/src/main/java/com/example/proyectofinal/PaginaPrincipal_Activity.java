@@ -86,7 +86,6 @@ public class PaginaPrincipal_Activity extends AppCompatActivity{
         }
 
 
-        Toast.makeText(this, ""+idSala, Toast.LENGTH_SHORT).show();
 //        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
 //            @Override
 //            public boolean onNavigationItemSelected(@NonNull MenuItem item) {

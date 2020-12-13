@@ -134,7 +134,7 @@ public class CrearSala_Activity extends AppCompatActivity implements View.OnClic
         if (view.getId() == R.id.btnCrearSalaPersonal) {
 
             if(TextUtils.isEmpty(nombreSala.getText().toString()) || TextUtils.isEmpty(dineroSala.getText().toString())){
-                Toast.makeText(this, "No pusistes los datos obligatorios", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, getString(R.string.datosObligatorios) , Toast.LENGTH_SHORT).show();
                 if(TextUtils.isEmpty(nombreSala.getText().toString())){
                     nombreSalaLayout.setError(getString(R.string.nombreFallo));
                 }
@@ -173,7 +173,7 @@ public class CrearSala_Activity extends AppCompatActivity implements View.OnClic
                             }
                         });
                     } else {
-                        Toast.makeText(CrearSala_Activity.this, "No se unio", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(CrearSala_Activity.this, getString(R.string.error), Toast.LENGTH_SHORT).show();
                     }
                 }
             });
