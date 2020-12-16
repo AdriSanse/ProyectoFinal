@@ -66,7 +66,7 @@ public class PaginaPrincipal_Activity extends AppCompatActivity{
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_home, R.id.nav_perfil, R.id.ajustesFragment, R.id.ayudaFragment, R.id.idiomasFragment, R.id.sobreNosotros_Fragment)
+                R.id.nav_home, R.id.nav_perfil, R.id.ajustesFragment, R.id.ayudaFragment, R.id.idiomasFragment, R.id.sobreNosotros_Fragment, R.id.compartirAppFragment)
                 .setDrawerLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);

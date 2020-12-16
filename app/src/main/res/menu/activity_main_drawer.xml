@@ -25,10 +25,10 @@
             android:id="@+id/sobreNosotros_Fragment"
             android:icon="@drawable/ic_sobre_nosotros"
             android:title="@string/nosotros" />
-<!--        <item-->
-<!--            android:id="@+id/compartirAppFragment"-->
-<!--            android:icon="@drawable/ic_compartir"-->
-<!--            android:title="@string/compartir" />-->
+        <item
+            android:id="@+id/compartirAppFragment"
+            android:icon="@drawable/ic_compartir"
+            android:title="@string/compartir" />
 
     </group>
 </menu>
