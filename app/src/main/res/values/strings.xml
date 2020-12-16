@@ -80,6 +80,8 @@
     <string name="invitacionDialog2">. ¿Esta seguro que desea unirse?</string>
     <string name="descargateLaApp">Descargate la app desde este enlace</string>
     <string name="error">ERROR!</string>
+    <string name="marcarOpcion">Marca una opcion</string>
+    <string name="noFunciona">No funciona</string>
 
     <string name="ayudaEscrita">Bienvenido a la aplicacion para crear Salas en las que podras llevar un control de un dinero que determine el lider de la sala.</string>
     <string name="ayudaEscrita1">1ª Pulse sobre el boton de Crear Sala si desea ser el lider de la Sala</string>
@@ -110,7 +112,7 @@
     <string name="invitarGenteGmail">Invitar gente a mi Sala</string>
     <string name="mensajeGmail">Te invito a mi Sala, copia este identificador para unirte a mi sala </string>
 
-    <string name="hola">PaginaPrincipal Activity</string>
+    <string name="hola">Pagina Principal Activity</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="nav_header_title">Android Studio</string>
@@ -120,12 +122,12 @@
 
     <string name="menu_home">Inicio</string>
     <string name="menu_gallery">Ver Perfil</string>
-    <string name="title_activity_crear_sala_">CrearSala Activity</string>
-    <string name="title_activity_sala_personal_">SalaPersonal Activity</string>
+    <string name="title_activity_crear_sala_">Crear Sala Activity</string>
+    <string name="title_activity_sala_personal_">Sala Personal Activity</string>
     <string name="recuperarContrasenaTitulo">Recuperar Contrasena</string>
     <string name="registroTitulo">Registro</string>
-    <string name="title_activity_eleccion_sala_">EleccionSala Activity</string>
-    <string name="title_activity_invitar_gente_">InvitarGente Activity</string>
+    <string name="title_activity_eleccion_sala_">Eleccion Sala Activity</string>
+    <string name="title_activity_invitar_gente_">Invitar Gente Activity</string>
     <string name="title_activity_sucesos_">Sucesos Activity</string>
     <string name="title_activity_borrar_sala_">BorrarSala Activity</string>
 

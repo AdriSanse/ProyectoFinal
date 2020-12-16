@@ -49,9 +49,9 @@ public class Idioma_Ajustes_Activity extends AppCompatActivity implements View.O
     }
 
     public void verIdiomas(){
-        String[] listaItems = {getString(R.string.francia), getString(R.string.ingles),getString(R.string.aleman), getString(R.string.espanol)};
+        String[] listaItems = {getString(R.string.francia), getString(R.string.ingles), getString(R.string.espanol)};
         AlertDialog.Builder builder = new AlertDialog.Builder(Idioma_Ajustes_Activity.this);
-        builder.setTitle("Elija idioma");
+        builder.setTitle(getString(R.string.seleccionaIdioma));
         builder.setSingleChoiceItems(listaItems, -1, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
@@ -70,20 +70,12 @@ public class Idioma_Ajustes_Activity extends AppCompatActivity implements View.O
                     startActivity(new Intent(Idioma_Ajustes_Activity.this,PaginaPrincipal_Activity.class));
                 }
                 else if(i == 2){
-                    //Aleman
-                    setLocale("de");
-                    recreate();
-                    finish();
-                    startActivity(new Intent(Idioma_Ajustes_Activity.this,PaginaPrincipal_Activity.class));
-                }
-                else if(i == 3){
                     //Español
                     setLocale("esp");
                     recreate();
                     finish();
                     startActivity(new Intent(Idioma_Ajustes_Activity.this,PaginaPrincipal_Activity.class));
                 }
-
                 dialogInterface.dismiss();
             }
         }).show();

@@ -37,9 +37,4 @@
         android:name="com.example.proyectofinal.ui.SobreNosotros.SobreNosotros_Fragment"
         android:label="@string/sobreNosotrosTitulo"
         tools:layout="@layout/fragment_sobre_nosotros" />
-    <fragment
-        android:id="@+id/compartirAppFragment"
-        android:name="com.example.proyectofinal.ui.Compartir.CompartirAppFragment"
-        android:label="@string/compartirApp"
-        tools:layout="@layout/fragment_compartir_app" />
 </navigation>

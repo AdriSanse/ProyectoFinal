@@ -101,6 +101,7 @@ public class RecuperarContrasena_Activity extends AppCompatActivity implements V
                 progressDialog.setCanceledOnTouchOutside(false);
                 progressDialog.show();
                 cambioPass();
+                correoCambio.setText("");
             }else{
                 cambioCorreoLayout.setError(getString(R.string.emailFallo));
             }

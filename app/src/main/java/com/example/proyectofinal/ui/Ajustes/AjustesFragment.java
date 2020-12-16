@@ -36,7 +36,7 @@ import static android.content.Context.MODE_PRIVATE;
 public class AjustesFragment extends Fragment implements View.OnClickListener{
 
     View mView;
-    CardView cerrarSesion, prueba, verPerfil, cambiarContrasena, idioma;
+    CardView cerrarSesion, prueba, verPerfil, cambiarContrasena, idioma, hola3, hola5;
     Autentificacion mAuth;
 
     public AjustesFragment() {
@@ -59,6 +59,10 @@ public class AjustesFragment extends Fragment implements View.OnClickListener{
         cambiarContrasena.setOnClickListener(this);
         idioma = mView.findViewById(R.id.cambiarIdiomaAjustes);
         idioma.setOnClickListener(this);
+        hola3 = mView.findViewById(R.id.hola3);
+        hola3.setOnClickListener(this);
+        hola5 = mView.findViewById(R.id.hola5);
+        hola5.setOnClickListener(this);
         guardarLocale();
         return mView;
     }
@@ -97,6 +101,15 @@ public class AjustesFragment extends Fragment implements View.OnClickListener{
         if(R.id.cambiarIdiomaAjustes==view.getId()){
             Intent miIntentoIdioma = new Intent(getActivity(), Idioma_Ajustes_Activity.class);
             startActivity(miIntentoIdioma);
+        }
+        if(R.id.ayudaAjustes==view.getId()){
+            Toast.makeText(getActivity(), getString(R.string.noFunciona), Toast.LENGTH_SHORT).show();
+        }
+        if(R.id.hola3==view.getId()){
+            Toast.makeText(getActivity(), getString(R.string.noFunciona), Toast.LENGTH_SHORT).show();
+        }
+        if(R.id.hola5==view.getId()){
+            Toast.makeText(getActivity(), getString(R.string.noFunciona), Toast.LENGTH_SHORT).show();
         }
     }
 }

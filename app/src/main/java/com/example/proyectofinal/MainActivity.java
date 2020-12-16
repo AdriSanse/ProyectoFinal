@@ -58,63 +58,16 @@ public class MainActivity extends AppCompatActivity implements OnClickListener{
         btnRegistro.setOnClickListener(this);
         btnLogin = findViewById(R.id.btnLogin);
         btnLogin.setOnClickListener(this);
-        correo.setText("adrian15sanse@gmail.com");
-        contrasena.setText("123123");
-        Intent miIdSala = getIntent();
-        String idSala = (String) miIdSala.getSerializableExtra("idSalaUnirse");
-        Toast.makeText(this, ""+idSala, Toast.LENGTH_SHORT).show();
         boolean result = getIntent().getBooleanExtra("cerrarSesion",false);
         if(result){
             System.out.println("Cerrar Sesion");
             mauth.logOut();
 
         }
-
-        contrasena.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-                if(TextUtils.isEmpty(contrasena.getText().toString())){
-                    contrasenaLayout.setError(getString(R.string.contrasenaFallo));
-                }else{
-                    contrasenaLayout.setError(null);
-                }
-            }
-        });
-        correo.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-                if(TextUtils.isEmpty(correo.getText().toString())){
-                    correoLayout.setError(getString(R.string.emailFallo));
-                }else{
-                    correoLayout.setError(null);
-                }
-            }
-        });
-
     }
 
     public void verIdiomas(){
-        String[] listaItems = {getString(R.string.francia), getString(R.string.ingles),getString(R.string.aleman), getString(R.string.espanol)};
+        String[] listaItems = {getString(R.string.francia), getString(R.string.ingles), getString(R.string.espanol)};
         AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
         builder.setTitle(getString(R.string.seleccionaIdioma));
         builder.setSingleChoiceItems(listaItems, -1, new DialogInterface.OnClickListener() {
@@ -131,16 +84,10 @@ public class MainActivity extends AppCompatActivity implements OnClickListener{
                     recreate();
                 }
                 else if(i == 2){
-                    //Aleman
-                    setLocale("de");
-                    recreate();
-                }
-                else if(i == 3){
                     //Español
                     setLocale("esp");
                     recreate();
                 }
-
                 dialogInterface.dismiss();
             }
         }).show();

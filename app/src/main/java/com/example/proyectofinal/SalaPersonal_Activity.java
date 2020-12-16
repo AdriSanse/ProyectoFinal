@@ -270,7 +270,6 @@ public class SalaPersonal_Activity extends AppCompatActivity implements View.OnC
                         if(task.isSuccessful()){
                             for(DocumentSnapshot document : task.getResult()) {
                                 double resultadoGasto = Double.parseDouble(dineroSala) - dineroDouble;
-                                final String sResultado = resultadoGasto + "";
 
                                 Sucesos miSuceso = new Sucesos();
                                 miSuceso.setDinero(""+dineroDouble);
@@ -284,7 +283,7 @@ public class SalaPersonal_Activity extends AppCompatActivity implements View.OnC
                                     public void onComplete(@NonNull Task<Void> task) {
                                         if(task.isSuccessful()){
                                             DocumentReference actuDineroSala = db.collection("Salas").document(id);
-                                            actuDineroSala.update("dinero",roundToHalf(resultadoGasto)).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                            actuDineroSala.update("dinero",resultadoGasto+"").addOnCompleteListener(new OnCompleteListener<Void>() {
                                                 @Override
                                                 public void onComplete(@NonNull Task<Void> task) {
                                                     if(task.isSuccessful()){
@@ -313,6 +312,7 @@ public class SalaPersonal_Activity extends AppCompatActivity implements View.OnC
                         if(task.isSuccessful()){
                             for(DocumentSnapshot document : task.getResult()) {
                                 double resultadoIngreso = Double.parseDouble(dineroSala) + dineroDouble;
+                                Toast.makeText(SalaPersonal_Activity.this, ""+resultadoIngreso, Toast.LENGTH_SHORT).show();
 
                                 Sucesos miSuceso = new Sucesos();
                                 miSuceso.setDinero(""+dineroDouble);
@@ -327,7 +327,7 @@ public class SalaPersonal_Activity extends AppCompatActivity implements View.OnC
                                     public void onComplete(@NonNull Task<Void> task) {
                                         if(task.isSuccessful()){
                                             DocumentReference actuDineroSala = db.collection("Salas").document(id);
-                                            actuDineroSala.update("dinero",roundToHalf(resultadoIngreso)).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                            actuDineroSala.update("dinero",resultadoIngreso+"").addOnCompleteListener(new OnCompleteListener<Void>() {
                                                 @Override
                                                 public void onComplete(@NonNull Task<Void> task) {
                                                     if(task.isSuccessful()){
@@ -345,11 +345,14 @@ public class SalaPersonal_Activity extends AppCompatActivity implements View.OnC
                     }
                 });
             }
-            grupoRadio.clearCheck();
-            textAsunto.setText("");
-            textoCalendario.setText("");
-            textoDineroCambio.setText("");
-
+            if(!radioIngreso.isChecked() && !radioGasto.isChecked()){
+                Toast.makeText(this, getString(R.string.marcarOpcion), Toast.LENGTH_SHORT).show();
+            }else {
+                grupoRadio.clearCheck();
+                textAsunto.setText("");
+                textoCalendario.setText("");
+                textoDineroCambio.setText("");
+            }
         }
         if(view.getId()==R.id.btnInvitarGente){
             Intent miIntentoInvitar = new Intent(this, InvitarGente_Activity.class);

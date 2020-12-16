@@ -168,6 +168,7 @@ public class CrearSala_Activity extends AppCompatActivity implements View.OnClic
                                         Intent miIntento = new Intent(CrearSala_Activity.this, SalaPersonal_Activity.class);
                                         miIntento.putExtra("id", id);
                                         startActivity(miIntento);
+                                        finish();
                                     }
                                 }
                             }

@@ -50,10 +50,7 @@ public class PaginaPrincipal_Activity extends AppCompatActivity{
     Autentificacion mauth;
     UsuariosProvider usersProvider;
     FirebaseFirestore db;
-    View header;
-    TextView nombreUsuario, correoUsuario;
     DrawerLayout drawer;
-    private ListenerRegistration listener;
 
     @SuppressLint("ResourceType")
     @Override
@@ -69,14 +66,12 @@ public class PaginaPrincipal_Activity extends AppCompatActivity{
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_home, R.id.nav_perfil, R.id.ajustesFragment, R.id.ayudaFragment, R.id.idiomasFragment, R.id.sobreNosotros_Fragment, R.id.compartirAppFragment)
+                R.id.nav_home, R.id.nav_perfil, R.id.ajustesFragment, R.id.ayudaFragment, R.id.idiomasFragment, R.id.sobreNosotros_Fragment)
                 .setDrawerLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
-
-
 
         String idSala = getIntent().getStringExtra("idSalaUnirse");
         if(idSala!=null){
@@ -84,28 +79,6 @@ public class PaginaPrincipal_Activity extends AppCompatActivity{
            i.putExtra("idLobbyToJoin",idSala);
            startActivity(i);
         }
-
-
-//        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-//            @Override
-//            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-//
-//                if(item.getItemId()==R.id.ajustesFragment){
-//                    Log.e("own", "onDestinationChanged: entro " );
-//                    Bundle bundle=new Bundle();
-//                    bundle.putString("key","value");
-//
-//                    return true;
-//                }
-//
-//                return false;
-//            }
-//        });
-
-
-        header = navigationView.getHeaderView(0);
-        nombreUsuario = header.findViewById(R.id.nombreUsuarioDrawer);
-        correoUsuario = header.findViewById(R.id.correoUsuarioDrawer);
 
         mauth = new Autentificacion();
         usersProvider = new UsuariosProvider();
@@ -133,30 +106,6 @@ public class PaginaPrincipal_Activity extends AppCompatActivity{
         setLocale(idioma);
     }
 
-//    @Override
-//    protected void onStart() {
-//        if(listener==null){
-//            cargarDatos();
-//        }
-//        super.onStart();
-//    }
-//
-//    @Override
-//    protected void onStop() {
-//        listener.remove();
-//        System.out.println("OnStop");
-//        super.onStop();
-//    }
-
-//    public void cargarDatos(){
-//        usersProvider.getUsuario(mauth.getIdUser()).addSnapshotListener(new EventListener<DocumentSnapshot>() {
-//            @Override
-//            public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
-//                nombreUsuario.setText(value.get("nombre").toString());
-//                correoUsuario.setText(value.get("email").toString());
-//            }
-//        });
-//    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

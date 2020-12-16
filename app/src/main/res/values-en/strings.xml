@@ -81,6 +81,8 @@
     <string name="invitacionDialog2">. Are you sure you want to join?</string>
     <string name="descargateLaApp">Download the app from this link</string>
     <string name="error">ERROR!</string>
+    <string name="marcarOpcion">Cochez une option</string>
+    <string name="noFunciona">Does not work</string>
 
     <string name="ayudaEscrita">Welcome to the application to create rooms where you can keep track of money determined by the room leader.</string>
     <string name="ayudaEscrita1">1st Click on the Create Room button if you want to be the leader of the Room </string>

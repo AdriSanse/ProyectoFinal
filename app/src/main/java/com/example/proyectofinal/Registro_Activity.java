@@ -148,8 +148,8 @@ public class Registro_Activity extends AppCompatActivity implements View.OnClick
         });
     }
 
-    public boolean isEmailValid(TextInputLayout inputLayoutEmail) {
-        String email = inputLayoutEmail.getEditText().getText().toString().trim();
+    public boolean isEmailValid(TextView inputLayoutEmail) {
+        String email = inputLayoutEmail.getText().toString().trim();
         if (Patterns.EMAIL_ADDRESS.matcher(email).find()) {
             inputLayoutEmail.setError(null);
             return true;
@@ -183,9 +183,9 @@ public class Registro_Activity extends AppCompatActivity implements View.OnClick
             String spass = contrasena.getText().toString();
             final String snombre = nombre.getText().toString();
             final String stelefono = telefono.getText().toString();
-            if(!isEmailValid(correoLayout) || TextUtils.isEmpty(spass) || TextUtils.isEmpty(snombre) || TextUtils.isEmpty(stelefono)){
+            if(!isEmailValid(correo) || TextUtils.isEmpty(spass) || TextUtils.isEmpty(snombre) || TextUtils.isEmpty(stelefono)){
                 Toast.makeText(this, getString(R.string.datosObligatorios) , Toast.LENGTH_SHORT).show();
-                if(!isEmailValid(correoLayout)){
+                if(!isEmailValid(correo)){
                     correoLayout.setError(getString(R.string.emailFallo));
                 }
                 if(TextUtils.isEmpty(spass)){

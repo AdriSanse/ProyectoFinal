@@ -19,7 +19,6 @@ import java.util.ArrayList;
 
 public class AdaptadorSucesos extends FirestoreRecyclerAdapter<Sucesos, AdaptadorSucesos.ViewHolderSucesos> {
 
-    ArrayList<Sucesos> misSucesos;
     private Context miContexto;
 
     public AdaptadorSucesos(@NonNull FirestoreRecyclerOptions<Sucesos> options, Context miContexto) {
