@@ -47,22 +47,25 @@ public class SplashScreenActivity extends AppCompatActivity {
                         if (pendingDynamicLinkData != null) {
                             deepLink = pendingDynamicLinkData.getLink();
                             if (deepLink.getQueryParameter("idSala") != null) {
+                                FirebaseAuth auth = FirebaseAuth.getInstance();
                                 String id = deepLink.getQueryParameter("idSala");
-                                Intent intent=new Intent(SplashScreenActivity.this,PaginaPrincipal_Activity.class);
-                                intent.putExtra("idSalaUnirse",id);
-                                System.out.println(id);
-                                startActivity(intent);
+                                if (auth.getCurrentUser() != null) {
+                                    ///if existe session
+                                    Intent intent=new Intent(SplashScreenActivity.this,PaginaPrincipal_Activity.class);
+                                    intent.putExtra("idSalaUnirse",id);
+                                    System.out.println(id);
+                                    startActivity(intent);
+                                }else{
+                                    startActivity(new Intent(SplashScreenActivity.this, MainActivity.class));
+                                }
+                              
+
+                            }
+                            if(deepLink.getQueryParameter("share") != null){
+                                verifyIfSessionExist();
                             }
                         } else {
-                            FirebaseAuth auth = FirebaseAuth.getInstance();
-                            if (auth.getCurrentUser() != null){
-                                Intent miIntento = new Intent(SplashScreenActivity.this, PaginaPrincipal_Activity.class);
-                                miIntento.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                                startActivity(miIntento);
-                            }
-                            else{
-                                startActivity(new Intent(SplashScreenActivity.this, MainActivity.class));
-                            }
+                            verifyIfSessionExist();
                         }
                         finishAffinity();///destroy all activities until this time
 
@@ -71,19 +74,24 @@ public class SplashScreenActivity extends AppCompatActivity {
                 .addOnFailureListener(this, new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        FirebaseAuth auth = FirebaseAuth.getInstance();
-                        if (auth.getCurrentUser() != null){
-                            Intent miIntento = new Intent(SplashScreenActivity.this, PaginaPrincipal_Activity.class);
-                            miIntento.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                            startActivity(miIntento);
-                        }
-                        else{
-                            startActivity(new Intent(SplashScreenActivity.this, MainActivity.class));
-                        }
+
+                        verifyIfSessionExist();
                         finishAffinity();///destroy all activities until this time
 
                     }
                 });
+    }
+
+    private void verifyIfSessionExist() {
+        FirebaseAuth auth = FirebaseAuth.getInstance();
+        if (auth.getCurrentUser() != null) {
+
+            Intent miIntento = new Intent(SplashScreenActivity.this, PaginaPrincipal_Activity.class);
+            miIntento.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(miIntento);
+        } else {
+            startActivity(new Intent(SplashScreenActivity.this, MainActivity.class));
+        }
     }
 
     private void setLocale(String lang) {

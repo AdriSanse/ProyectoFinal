@@ -51,7 +51,7 @@ public class CompartirAppFragment extends Fragment implements View.OnClickListen
     public void generateDynamicLink() {
 
         Task<ShortDynamicLink> dynamicLink = FirebaseDynamicLinks.getInstance().createDynamicLink()
-                .setLink(Uri.parse("https://proyectofinalgrado.page.link"))
+                .setLink(Uri.parse("https://proyectofinalgrado.page.link?share=true"))
                 .setDomainUriPrefix("https://proyectofinalgrado.page.link")
                 .setAndroidParameters(
                         new DynamicLink.AndroidParameters.Builder("com.example.proyectofinal")
